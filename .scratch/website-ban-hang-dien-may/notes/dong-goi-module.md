@@ -79,7 +79,20 @@ Việc phải xử lý với shops gốc để gói tự đủ (**[Mã]** các t
 
 Mẹo có thể dùng (**[Suy luận]**, chưa thử): nếu lần đầu cài shops gốc bằng tải zip lên (thay vì chép tay) thì mọi tệp trong zip được ghi vào `_extension_files` và sẽ được xuất lại kể cả tệp ngoài đường dẫn chuẩn; nhưng tệp thêm mới về sau vẫn không tự vào bảng đó, nên không nên dựa vào cơ chế này — cứ đặt tệp đúng đường dẫn chuẩn. Lưu ý zip của repo gốc không tải lên trực tiếp được vì ở gốc có `README-SHOPS.md`, `CHANGELOG-SHOPS.txt`, `CONTRIBUTING-SHOPS.md`, `.gitignore` (gốc zip chỉ được có `config.ini`).
 
+## Đã kiểm trên site chạy thật (15/11/2026, shops gốc chép tay rồi cài qua quản trị)
+
+- Mã đóng gói trong site đang chạy (`site/admin/extensions/manage.php` dòng 94-152) trùng với mô tả ở mục 2.
+- Sau khi mở trang "Thiết lập module mới", shops có dòng trong `_setup_extensions` và hiện ở Mở rộng > Quản lý. Link đóng gói KHÔNG phải thẻ `<a>`: nó nằm trong `data-href` của biểu tượng `em.package-ext` (`themes/admin_default/modules/extensions/manage.tpl` dòng 64), dạng `...&nv=extensions&op=manage&type=module&title=shops&checksess=<md5>`.
+- GET link đó trả `nv4_module_shops.zip` (`application/zip`, 637.162 byte; 295 mục, 2.228.628 byte chưa nén). Nội dung đúng như bảng mục 2:
+  - `config.ini` (`id="0"`, `type="module"`, `name="shops"`, `version="4.6.00"`, tác giả `VINADES` / `contact@vinades.vn`)
+  - `modules/shops/` (toàn bộ)
+  - `themes/default/modules/shops/`, `themes/default/css/shops.css`, `themes/default/js/shops.js`, `themes/default/images/shops/`
+  - `themes/admin_default/modules/shops/`, `themes/admin_default/css/shops.css`, `themes/admin_default/js/shops.js`
+- Không có trong gói, đúng như dự đoán: `themes/default/css/jquery.bxslider.css`, `themes/default/js/jquery.bxslider.min.js`, `themes/admin_default/js/content.js`, `assets/shops/`, `uploads/shops/`.
+- 2,23 MB chưa nén vượt mức 2M mặc định của PHP, nhưng image PHP của dự án đã đặt `upload_max_filesize=64M`, `post_max_size=64M` (`docker/Dockerfile`) và nginx `client_max_body_size 64M`; site thứ hai ở ticket 05 phải dùng cùng cấu hình.
+- Cài shops tạo thêm các thư mục chỉ chứa `index.html`: `uploads/shops/{temp_pic,files,<Y_m>}`, `assets/shops/files_tpl`, `assets/mobile/shops/files_tpl` — đã đưa vào `.gitignore`.
+
 ## Chưa xác minh
 
-- Chưa chạy thật việc xuất rồi cài lại; bước kiểm tra MIME và giới hạn dung lượng cần thử ở ticket 05.
-- `site/` đang dùng không được đọc theo yêu cầu, nên chưa biết giá trị thật của `extension_setup_ips`, `nv_max_size`, `upload_max_filesize` trong môi trường Docker.
+- Chưa cài lại gói vừa xuất lên site sạch; bước kiểm tra MIME (`LICENSE`, `*.map` trong `themes/default/images/shops/`) cần thử ở ticket 05.
+- Chưa đọc giá trị `extension_setup_ips`, `nv_max_size` của site đang chạy (bảng `nv4_config` chưa có dòng `extension_setup*` nào — cần xem `config_global.php` khi làm ticket 05).
