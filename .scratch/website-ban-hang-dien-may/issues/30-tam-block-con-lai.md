@@ -11,3 +11,6 @@
 - [ ] Giỏ hàng thu nhỏ cập nhật số lượng ngay khi thêm sản phẩm
 - [ ] Block chỉ có nghĩa ở một loại trang thì tự ẩn ở các trang khác
 - [ ] Cả tám block có trong gói module xuất ra và chạy trên site sạch
+- [ ] Block bộ lọc hiện được ở hai dạng: cột bên và ngăn kéo
+- [ ] Giỏ hàng thu nhỏ không mở xem nhanh khi đang ở trang giỏ hàng
+- [ ] Block cửa hàng còn hàng cập nhật khi khách đổi biến thể trên trang chi tiết mà không tải lại trang

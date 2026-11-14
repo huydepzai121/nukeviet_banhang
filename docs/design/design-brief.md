@@ -35,6 +35,8 @@ Việc chủ cửa hàng nên tự làm trước khi chốt tên (bên triển k
 
 Nếu chọn tên khác "Sáng Nhà" hoặc bảng màu B: logo và hai tệp HTML sẽ được làm lại theo lựa chọn đó trước khi dựng theme.
 
+**Đã duyệt ngày 15/11/2026:** chủ cửa hàng chọn tên **Sáng Nhà** và bảng màu **phương án A**. Các mục 3 đến 7 chưa được nhắc riêng nên dùng theo đề xuất chính; việc tra cứu nhãn hiệu, tên doanh nghiệp và tên miền vẫn chưa làm.
+
 ## 2. Nguyên tắc
 
 - Thiết kế riêng. Bố cục theo các quy ước chung của bán lẻ trực tuyến (ô tìm kiếm ở đầu trang, cây ngành hàng bên trái, bộ lọc bên trái lưới sản phẩm, tóm tắt đơn bên phải). Không lấy tên, logo, màu nhận diện, hình ảnh, câu chữ hay bố cục đặc trưng của trang nào.
