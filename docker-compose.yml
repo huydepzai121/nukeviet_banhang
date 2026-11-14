@@ -1,6 +1,6 @@
 # NukeViet 4.6 stack — copy this file to the project root as docker-compose.yml
 # Usage: docker compose --env-file .env up -d
-name: nukeviet
+name: nukeviet_banhang
 
 services:
   nginx:

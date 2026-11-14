@@ -16,3 +16,8 @@
 !/site/uploads/**/
 !**/index.html
 !**/.htaccess
+
+# Cấu hình NukeViet sinh ra khi cài (chứa khoá của site)
+/site/data/config/config_ini.*.php
+/site/data/config/efloodip.php
+/site/data/config/disable_site_content.*.txt
