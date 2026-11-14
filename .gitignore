@@ -1,0 +1,18 @@
+# Bí mật và dữ liệu cục bộ
+.env
+/backups/*.sql
+/.work/
+/*.zip
+
+# Tệp NukeViet sinh ra khi chạy
+/site/config.php
+/site/data/cache/**
+/site/data/logs/**
+/site/data/tmp/**
+/site/uploads/**
+!/site/data/cache/**/
+!/site/data/logs/**/
+!/site/data/tmp/**/
+!/site/uploads/**/
+!**/index.html
+!**/.htaccess
