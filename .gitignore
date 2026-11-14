@@ -21,3 +21,8 @@
 /site/data/config/config_ini.*.php
 /site/data/config/efloodip.php
 /site/data/config/disable_site_content.*.txt
+
+# Thư mục NukeViet tạo ra khi cài module shops
+/site/uploads/shops/
+/site/assets/shops/files_tpl/
+/site/assets/mobile/shops/
