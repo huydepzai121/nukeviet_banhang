@@ -6,6 +6,10 @@
 
 **Status:** ready-for-agent
 
+## Comments
+
+- 2026-11-14: Chủ cửa hàng yêu cầu số lượng lớn hơn spec (300–500 sản phẩm, 100+ thành viên, 200+ đơn). Đã có `php tools/seed-sangnha.php` nạp 20 ngành hàng, 420 sản phẩm, 130 thành viên, 260 đơn, 450 đánh giá trên schema shops hiện tại. Thương hiệu, bộ thông số, biến thể và tồn theo cửa hàng vẫn chờ ticket 07, 09, 10 nên các mục chấp nhận đó chưa đánh dấu xong.
+
 - [ ] Đủ các ngành hàng: điện thoại, laptop, máy tính bảng, đồng hồ thông minh, âm thanh, phụ kiện, máy tính và màn hình, linh kiện, tivi, máy lạnh, tủ lạnh, máy giặt, gia dụng, SIM và thẻ cào
 - [ ] Mỗi ngành hàng có khoảng 10 đến 15 sản phẩm với bộ thông số đầy đủ để lọc và so sánh
 - [ ] Tên và thông số theo sản phẩm thật; giá là giá giả định; ảnh là ảnh minh hoạ tự tạo

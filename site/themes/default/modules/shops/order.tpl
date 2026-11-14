@@ -224,7 +224,7 @@
             e.preventDefault();
             $.ajax({
                 type : 'POST',
-                url : nv_base_siteurl + 'index.php?' + nv_lang_variable + '=' + nv_lang_data + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=order&nocache=' + new Date().getTime(),
+                url : window.location.href,
                 data : $(this).serialize(),
                 success : function(json) {
                     if (json.error) {

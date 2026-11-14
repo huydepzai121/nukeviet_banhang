@@ -35,6 +35,7 @@ $catid = $nv_Request->get_int('catid', 'get', 0);
 $typemoney = $nv_Request->get_string('typemoney', 'get', '');
 $check_num = $nv_Request->get_int('choose', 'get', 1);
 $pages = $nv_Request->get_int('page', 'get', 1);
+$page = $pages;
 
 $from_date = $nv_Request->get_title('from_date', 'get', '', 1);
 $to_date = $nv_Request->get_title('to_date', 'get', '', 1);
@@ -66,6 +67,12 @@ $group_price = is_array($group_price) && !empty($group_price) ? array_map(functi
 }, $group_price) : [];
 
 $page_url = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=search';
+if ($key !== '') {
+    $page_url .= '&amp;q=' . rawurlencode($key);
+}
+if ($catid > 0) {
+    $page_url .= '&amp;catid=' . $catid;
+}
 if ($page > 1) {
     $page_url .= '&amp;page=' . $page;
 }
