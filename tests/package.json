@@ -1,0 +1,14 @@
+{
+  "name": "nukeviet-banhang-tests",
+  "private": true,
+  "type": "module",
+  "description": "HTTP-boundary tests against the site running in Docker",
+  "scripts": {
+    "baseline": "node scripts/save-baseline.mjs",
+    "reset": "node scripts/reset-site.mjs",
+    "test": "node scripts/reset-site.mjs && node --test --test-concurrency=1 \"specs/**/*.test.mjs\""
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
