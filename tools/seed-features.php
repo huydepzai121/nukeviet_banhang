@@ -89,12 +89,31 @@ foreach (array_slice($products, 0, 8) as $row) {
     $insF->execute(['f' => $flashId, 'p' => $row['id'], 'price' => $price]);
 }
 
-$specs = ['Màn hình', 'Công suất', 'Bảo hành', 'Xuất xứ'];
+$specSets = [
+    'smartphone' => [['Màn hình', '6.5 inch Super AMOLED'], ['Bộ nhớ', '128GB'], ['Camera', '50MP + 5MP'], ['Pin', '5000 mAh']],
+    'dien-thoai-pho-thong' => [['Màn hình', '2.4 inch'], ['Pin', '1000 mAh'], ['Kết nối', '2G'], ['Bàn phím', 'Vật lý']],
+    'laptop' => [['Màn hình', '15.6 inch Full HD'], ['CPU', 'Core i5'], ['RAM', '16GB'], ['Ổ cứng', '512GB SSD']],
+    'tablet' => [['Màn hình', '10.9 inch'], ['Bộ nhớ', '128GB'], ['Kết nối', 'Wi-Fi'], ['Pin', '8000 mAh']],
+    'tu-lanh' => [['Dung tích', '300 lít'], ['Công nghệ', 'Inverter'], ['Ngăn đá', 'Trên'], ['Điện năng', 'Khoảng 1 kWh/ngày']],
+    'may-giat' => [['Khối lượng', '9 kg'], ['Cửa', 'Trước'], ['Công nghệ', 'Inverter'], ['Vắt', '1400 vòng/phút']],
+    'dieu-hoa' => [['Công suất', '12000 BTU'], ['Loại', '1 chiều Inverter'], ['Gas', 'R32'], ['Phạm vi', 'Phòng 15–20 m²']],
+    'smart-tv' => [['Kích thước', '55 inch'], ['Độ phân giải', '4K'], ['Hệ điều hành', 'Google TV'], ['Cổng', 'HDMI, USB']],
+    'man-hinh-may-tinh' => [['Kích thước', '27 inch'], ['Tấm nền', 'IPS'], ['Tần số', '75 Hz'], ['Cổng', 'HDMI']],
+    'tai-nghe' => [['Kiểu', 'Chụp tai'], ['Kết nối', 'Bluetooth 5.3'], ['Pin', '30 giờ'], ['Micro', 'Có']],
+    'dong-ho' => [['Màn hình', '1.4 inch AMOLED'], ['Chống nước', '5 ATM'], ['Pin', '2 ngày'], ['Cảm biến', 'Nhịp tim']],
+    'noi-com' => [['Dung tích', '1.8 lít'], ['Lòng nồi', 'Chống dính'], ['Chế độ', 'Nấu, hâm, hấp'], ['Công suất', '700 W']],
+];
+$aliases = [];
+foreach ($pdo->query('SELECT r.id, c.vi_alias FROM ' . $shops . '_rows r LEFT JOIN ' . $shops . '_catalogs c ON c.catid=r.listcatid') as $row) {
+    $aliases[(int) $row['id']] = (string) $row['vi_alias'];
+}
 $insSpec = $pdo->prepare('INSERT INTO ' . $shops . '_spec (pro_id, name, value, filterable) VALUES (:p,:n,:v,1)');
 foreach (array_slice($products, 0, 120) as $row) {
-    foreach ($specs as $k => $name) {
-        $insSpec->execute(['p' => $row['id'], 'n' => $name, 'v' => $name === 'Bảo hành' ? '12 tháng' : 'Mẫu ' . ($k + 1)]);
+    $pairs = $specSets[$aliases[(int) $row['id']] ?? ''] ?? [['Màn hình / công suất', 'Theo model'], ['Công nghệ', 'Inverter'], ['Xuất xứ', 'Lắp ráp']];
+    foreach ($pairs as $pair) {
+        $insSpec->execute(['p' => $row['id'], 'n' => $pair[0], 'v' => $pair[1]]);
     }
+    $insSpec->execute(['p' => $row['id'], 'n' => 'Bảo hành', 'v' => '12 tháng']);
 }
 
 $insQa = $pdo->prepare('INSERT INTO ' . $shops . '_qa (pro_id, sender, question, answer, status, add_time) VALUES (:p,:s,:q,:a,1,:t)');

@@ -132,7 +132,17 @@ img { max-width: 100%; }
 .sn-specs td { padding: 10px 0; border-bottom: 1px solid var(--line); }
 .sn-reviews article { padding: 12px 0; border-bottom: 1px solid var(--line); }
 .sn-reviews b { color: #B86E00; letter-spacing: 2px; }
-@media (max-width: 767px) { .sn-perks { grid-template-columns: 1fr; } }
+@media (max-width: 767px) {
+    .sn-perks { grid-template-columns: 1fr; }
+    .sn-cart-title { font-size: 22px; }
+    #fpro .table thead th:nth-child(1),
+    #fpro .table tbody td:nth-child(1),
+    #fpro .table thead th:nth-child(5),
+    #fpro .table tbody td:nth-child(5) { display: none; }
+    #fpro .table { font-size: 13px; }
+    #fpro input[type="number"] { width: 64px; min-width: 0; padding: 6px; }
+    #fpro .table a { white-space: normal; }
+}
 .sn-page h1 { font-size: 32px; margin: 8px 0 16px; }
 .sn-form { display: grid; gap: 10px; max-width: 480px; background: #fff; padding: 20px; border-radius: 16px; }
 .sn-form input { height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; }

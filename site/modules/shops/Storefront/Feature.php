@@ -408,6 +408,32 @@ function nv_shops_storefront_html()
     return '<div class="sn-home"><p class="sn-sample">Dữ liệu mẫu — giá minh hoạ.</p><div class="sn-hero-grid">' . $hero . '</div><ul class="sn-promises"><li>Giao nhanh nội thành</li><li>Đổi trả 7 ngày</li><li>Bảo hành chính hãng minh hoạ</li><li>Trả góp ước tính</li></ul>' . $flash . $brands . '</div>';
 }
 
+function nv_shops_sample_specs($alias, $warrantyMonths)
+{
+    $months = max(1, (int) $warrantyMonths) . ' tháng';
+    $sets = [
+        'smartphone' => [['Màn hình', '6.5 inch Super AMOLED'], ['Bộ nhớ', '128GB'], ['Camera', '50MP + 5MP'], ['Pin', '5000 mAh']],
+        'dien-thoai-pho-thong' => [['Màn hình', '2.4 inch'], ['Pin', '1000 mAh'], ['Kết nối', '2G'], ['Bàn phím', 'Vật lý']],
+        'laptop' => [['Màn hình', '15.6 inch Full HD'], ['CPU', 'Core i5'], ['RAM', '16GB'], ['Ổ cứng', '512GB SSD']],
+        'tablet' => [['Màn hình', '10.9 inch'], ['Bộ nhớ', '128GB'], ['Kết nối', 'Wi-Fi'], ['Pin', '8000 mAh']],
+        'tu-lanh' => [['Dung tích', '300 lít'], ['Công nghệ', 'Inverter'], ['Ngăn đá', 'Trên'], ['Điện năng', 'Khoảng 1 kWh/ngày']],
+        'may-giat' => [['Khối lượng', '9 kg'], ['Cửa', 'Trước'], ['Công nghệ', 'Inverter'], ['Vắt', '1400 vòng/phút']],
+        'dieu-hoa' => [['Công suất', '12000 BTU'], ['Loại', '1 chiều Inverter'], ['Gas', 'R32'], ['Phạm vi', 'Phòng 15–20 m²']],
+        'smart-tv' => [['Kích thước', '55 inch'], ['Độ phân giải', '4K'], ['Hệ điều hành', 'Google TV'], ['Cổng', 'HDMI, USB']],
+        'man-hinh-may-tinh' => [['Kích thước', '27 inch'], ['Tấm nền', 'IPS'], ['Tần số', '75 Hz'], ['Cổng', 'HDMI']],
+        'tai-nghe' => [['Kiểu', 'Chụp tai'], ['Kết nối', 'Bluetooth 5.3'], ['Pin', '30 giờ'], ['Micro', 'Có']],
+        'dong-ho' => [['Màn hình', '1.4 inch AMOLED'], ['Chống nước', '5 ATM'], ['Pin', '2 ngày'], ['Cảm biến', 'Nhịp tim']],
+        'noi-com' => [['Dung tích', '1.8 lít'], ['Lòng nồi', 'Chống dính'], ['Chế độ', 'Nấu, hâm, hấp'], ['Công suất', '700 W']],
+    ];
+    $rows = $sets[$alias] ?? [['Màn hình / công suất', 'Theo model'], ['Công nghệ', 'Inverter'], ['Xuất xứ', 'Lắp ráp'], ['Bảo hành', $months]];
+    $out = [];
+    foreach ($rows as $pair) {
+        $out[] = ['name' => $pair[0], 'value' => $pair[1]];
+    }
+    $out[] = ['name' => 'Bảo hành', 'value' => $months];
+    return $out;
+}
+
 function nv_shops_detail_extra($proId, $price, $sale, $warrantyMonths, $part = 'all')
 {
     global $db, $db_config;
@@ -433,13 +459,19 @@ function nv_shops_detail_extra($proId, $price, $sale, $warrantyMonths, $part = '
         $specs = $db->query('SELECT name, value FROM ' . $db_config['prefix'] . '_shops_spec WHERE pro_id=' . (int) $proId . ' ORDER BY id')->fetchAll();
     } catch (Exception $e) {
     }
-    if (!$specs) {
-        $specs = [
-            ['name' => 'Màn hình', 'value' => '6.5 inch'],
-            ['name' => 'Bộ nhớ', 'value' => '128GB'],
-            ['name' => 'Bảo hành', 'value' => $warrantyMonths . ' tháng'],
-            ['name' => 'Xuất xứ', 'value' => 'Lắp ráp'],
-        ];
+    $generic = !$specs;
+    foreach ($specs as $row) {
+        if (preg_match('/^Mẫu\s+\d+$/u', (string) $row['value'])) {
+            $generic = true;
+        }
+    }
+    if ($generic) {
+        $alias = '';
+        try {
+            $alias = (string) $db->query('SELECT c.vi_alias FROM ' . $db_config['prefix'] . '_shops_rows r LEFT JOIN ' . $db_config['prefix'] . '_shops_catalogs c ON c.catid=r.listcatid WHERE r.id=' . (int) $proId)->fetchColumn();
+        } catch (Exception $e) {
+        }
+        $specs = nv_shops_sample_specs($alias, (int) $warrantyMonths);
     }
     $html .= '<section class="sn-specs"><h2>Thông số</h2><table>';
     foreach ($specs as $row) {
