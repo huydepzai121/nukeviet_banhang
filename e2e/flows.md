@@ -62,3 +62,30 @@ Chạy: `node e2e/run.mjs` (Chrome headless). Ảnh lưu ở thư mục artifact
 ## admin-categories
 1. Mở danh sách ngành hàng.
 - Expected: "Điện thoại", "Điện lạnh", "Tủ lạnh".
+
+## flashsale
+1. Mở `/index.php/shops/flashsale/`.
+- Expected: có "Flash sale" và chữ "suất".
+
+## stores
+1. Mở `/index.php/shops/stores/`.
+- Expected: có "Sáng Nhà Quận 1".
+
+## brand
+1. Mở `/index.php/shops/brand/samsung/`.
+- Expected: có "Samsung".
+
+## search-plain
+1. Mở tìm kiếm `q=tu lanh`.
+- Expected: ra "Tủ lạnh" dù gõ không dấu.
+
+## warranty
+1. Mở `/index.php/shops/warranty/`.
+- Expected: form "Tra cứu".
+
+## installment
+1. Mở `/index.php/shops/installment/`.
+- Expected: có "Ước tính".
+
+## viewports
+Sau các flow, chụp trang chủ, ngành hàng, chi tiết, flash sale, cửa hàng, thương hiệu, tìm kiếm, giỏ, bảo hành, trả góp, thu cũ, quản trị đơn, quản trị sản phẩm và báo cáo ở bề rộng 1366, 768 và 390.

@@ -224,6 +224,69 @@ await flow('admin-categories', async () => {
     assertText(text, 'Tủ lạnh', 'ngành hàng');
 });
 
+await flow('flashsale', async () => {
+    await page.goto(`${base}/index.php/shops/flashsale/`, { waitUntil: 'domcontentloaded' });
+    const text = await page.evaluate(() => document.body.innerText);
+    assertText(text, 'Flash sale', 'flash sale');
+    assertText(text, 'suất', 'flash sale');
+});
+
+await flow('stores', async () => {
+    await page.goto(`${base}/index.php/shops/stores/`, { waitUntil: 'domcontentloaded' });
+    const text = await page.evaluate(() => document.body.innerText);
+    assertText(text, 'Sáng Nhà Quận 1', 'cửa hàng');
+});
+
+await flow('brand', async () => {
+    await page.goto(`${base}/index.php/shops/brand/samsung/`, { waitUntil: 'domcontentloaded' });
+    const text = await page.evaluate(() => document.body.innerText);
+    assertText(text, 'Samsung', 'thương hiệu');
+});
+
+await flow('search-plain', async () => {
+    await page.goto(`${base}/index.php/shops/search/?q=tu+lanh`, { waitUntil: 'domcontentloaded' });
+    const text = await page.evaluate(() => document.body.innerText);
+    assertText(text, 'Tủ lạnh', 'tìm không dấu');
+});
+
+await flow('warranty', async () => {
+    await page.goto(`${base}/index.php/shops/warranty/`, { waitUntil: 'domcontentloaded' });
+    const text = await page.evaluate(() => document.body.innerText);
+    assertText(text, 'Tra cứu', 'bảo hành');
+});
+
+await flow('installment', async () => {
+    await page.goto(`${base}/index.php/shops/installment/`, { waitUntil: 'domcontentloaded' });
+    const text = await page.evaluate(() => document.body.innerText);
+    assertText(text, 'Ước tính', 'trả góp');
+});
+
+const pages = [
+    ['home', '/index.php/shops/'],
+    ['category', '/index.php/shops/dien-lanh/'],
+    ['product', '/index.php/shops/smartphone/samsung-galaxy-a15-128gb.html'],
+    ['flashsale', '/index.php/shops/flashsale/'],
+    ['stores', '/index.php/shops/stores/'],
+    ['brand', '/index.php/shops/brand/samsung/'],
+    ['search', '/index.php/shops/search/?q=tu+lanh'],
+    ['cart', '/index.php/shops/cart/'],
+    ['warranty', '/index.php/shops/warranty/'],
+    ['installment', '/index.php/shops/installment/'],
+    ['tradein', '/index.php/shops/tradein/'],
+    ['admin-orders', '/admin/index.php?language=vi&nv=shops&op=order'],
+    ['admin-products', '/admin/index.php?language=vi&nv=shops&op=items'],
+    ['admin-report', '/admin/index.php?language=vi&nv=shops&op=report']
+];
+for (const [tag, width, height] of [['desktop', 1366, 900], ['tablet', 768, 1024], ['mobile', 390, 844]]) {
+    await page.setViewport({ width, height, isMobile: width < 500 });
+    for (const [name, href] of pages) {
+        await page.goto(`${base}${href}`, { waitUntil: 'domcontentloaded' });
+        const file = path.join(outDir, `${name}-${tag}.png`);
+        await page.screenshot({ path: file, fullPage: false });
+        console.log(`SHOT ${file}`);
+    }
+}
+
 await browser.close();
 
 const failed = results.filter((row) => row.status === 'FAIL');

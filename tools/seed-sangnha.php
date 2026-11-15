@@ -321,19 +321,22 @@ $insertRow = $pdo->prepare(
 );
 
 $paint = static function (string $file, string $caption, int $hue): void {
-    $im = imagecreatetruecolor(480, 360);
-    $r = (int) (80 + (sin(deg2rad($hue)) + 1) * 60);
-    $g = (int) (90 + (sin(deg2rad($hue + 120)) + 1) * 50);
-    $b = (int) (90 + (sin(deg2rad($hue + 240)) + 1) * 55);
-    $bg = imagecolorallocate($im, $r, $g, $b);
-    $band = imagecolorallocate($im, max(0, $r - 40), max(0, $g - 30), max(0, $b - 30));
-    $fg = imagecolorallocate($im, 255, 255, 255);
-    imagefilledrectangle($im, 0, 0, 480, 360, $bg);
-    imagefilledrectangle($im, 0, 0, 480, 48, $band);
-    imagestring($im, 5, 16, 16, 'SANG NHA  DU LIEU MAU', $fg);
-    imagestring($im, 5, 16, 160, $caption, $fg);
-    imagestring($im, 3, 16, 320, 'Anh minh hoa tu tao, khong phai anh hang', $fg);
-    imagejpeg($im, $file, 72);
+    $im = imagecreatetruecolor(640, 640);
+    imageantialias($im, true);
+    $paper = imagecolorallocate($im, 246, 248, 248);
+    $white = imagecolorallocate($im, 255, 255, 255);
+    $ink = imagecolorallocate($im, 20, 37, 42);
+    $r = (int) (40 + (sin(deg2rad($hue)) + 1) * 70);
+    $g = (int) (80 + (sin(deg2rad($hue + 140)) + 1) * 50);
+    $b = (int) (80 + (sin(deg2rad($hue + 260)) + 1) * 40);
+    $tone = imagecolorallocate($im, $r, $g, $b);
+    imagefilledrectangle($im, 0, 0, 640, 640, $paper);
+    imagefilledrectangle($im, 70, 80, 570, 470, $tone);
+    imagefilledrectangle($im, 110, 120, 530, 400, $white);
+    imagestring($im, 5, 130, 180, 'SANG NHA', $ink);
+    imagestring($im, 5, 130, 210, $caption, $tone);
+    imagestring($im, 3, 130, 500, 'Anh minh hoa tu tao', $ink);
+    imagejpeg($im, $file, 82);
     imagedestroy($im);
 };
 
@@ -618,6 +621,9 @@ $userCount = (int) $pdo->query('SELECT COUNT(*) FROM ' . $prefix . '_users WHERE
 $orderCount = (int) $pdo->query('SELECT COUNT(*) FROM ' . $shops . '_orders')->fetchColumn();
 $reviewCount = (int) $pdo->query('SELECT COUNT(*) FROM ' . $shops . '_review')->fetchColumn();
 $saleCount = (int) $pdo->query('SELECT COUNT(*) FROM ' . $shops . '_rows WHERE saleprice > 0')->fetchColumn();
+
+@file_get_contents('http://127.0.0.1:8080/index.php?language=vi&nv=shops');
+require __DIR__ . '/seed-features.php';
 
 echo "Đã nạp dữ liệu mẫu Sáng Nhà.\n";
 echo "Ngành hàng: {$catCount}\n";

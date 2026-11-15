@@ -75,6 +75,7 @@ function nv_template_view_home($array_data, $compare_id, $pages = '', $sort = 0,
     $xtpl->assign('MODULE_NAME', $module_name);
     $xtpl->assign('LANG', $lang_module);
     $xtpl->assign('TEMPLATE', $module_info['template']);
+    $xtpl->assign('STOREFRONT', function_exists('nv_shops_storefront_html') ? nv_shops_storefront_html() : '');
 
     if ($pro_config['home_data'] == 'all') {
         if (function_exists('nv_template_' . $viewtype)) {

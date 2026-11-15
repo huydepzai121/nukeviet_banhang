@@ -186,6 +186,10 @@ function nv_get_price($pro_id, $currency_convert, $number = 1, $per_pro = false,
     $return['sale_format'] = nv_number_format($return['sale'], $decimals); // Giá bán thực tế của sản phẩm đã format
     $return['unit'] = $money_config[$currency_convert]['symbol'];
 
+    if (function_exists('nv_shops_apply_flash')) {
+        $return = nv_shops_apply_flash($pro_id, $return, $number, $per_pro, $currency_convert);
+    }
+
     return $return;
 }
 

@@ -14,7 +14,7 @@ if (!defined('NV_ADMIN') or !defined('NV_MAINFILE')) {
 
 $module_version = [
     'name' => 'Shops',
-    'modfuncs' => 'main,viewcat,detail,search,cart,order,payment,complete,history,group,compare,wishlist,tag,point,shippingajax,download, blockcat,ajax',
+    'modfuncs' => 'main,viewcat,detail,search,cart,order,payment,complete,history,group,compare,wishlist,tag,point,shippingajax,download, blockcat,ajax,brand,flashsale,stores,warranty,installment,tradein,qa,paynotify',
     'is_sysmod' => 0,
     'virtual' => 1,
     'version' => '4.6.00',

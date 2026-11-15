@@ -108,7 +108,11 @@ $tbl_src = '';
 
 if (strlen($key) >= NV_MIN_SEARCH_LENGTH) {
     $dbkey = $db->dblikeescape($key);
-    $where = "AND ( product_code LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_title LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_bodytext LIKE '%" . $dbkey . "%' ) ";
+    $folded = function_exists('nv_shops_fold') ? nv_shops_fold($key) : '';
+    $foldSql = ($folded !== '' && function_exists('nv_shops_has_column') && nv_shops_has_column('rows', 'vi_search'))
+        ? " OR vi_search LIKE '%" . $db->dblikeescape($folded) . "%'"
+        : '';
+    $where = "AND ( product_code LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_title LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_bodytext LIKE '%" . $dbkey . "%'" . $foldSql . " ) ";
     $is_search = true;
 }
 
