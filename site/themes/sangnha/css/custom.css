@@ -109,7 +109,30 @@ img { max-width: 100%; }
 #fpro, #fpost, .sn-page { background: transparent; }
 #fpro .table, #fpost .panel { background: #fff; border-radius: 16px; overflow: hidden; }
 #fpro .table > thead > tr > th { border-bottom: 1px solid var(--line); background: #fff; }
-.step_bar { background: transparent !important; border: 0 !important; color: var(--muted); }
+.step_bar { background: #fff !important; border: 0 !important; border-radius: 16px; color: var(--muted); padding: 14px 18px !important; }
+.step_bar .step_current { color: var(--sn); font-weight: 700; }
+#fpro::before, #fpost::before { content: none; }
+.sn-cart-title { font-size: 28px; font-weight: 700; margin: 8px 0 16px; }
+#fpro .table { background: #fff; border: 0 !important; border-radius: 16px; }
+#fpro .table > thead > tr > th, #fpro .table > tbody > tr > td { border-color: var(--line) !important; vertical-align: middle; }
+#fpro .table a { color: var(--ink); font-weight: 600; text-decoration: none; }
+#fpro .money { color: var(--sale); font-weight: 700; }
+#fpost .alert-info { background: #f4f7f7; color: var(--muted); border: 0; border-radius: 14px; }
+#fpost .panel, #fpost .table { background: #fff; border-radius: 16px; }
+#fpost .control-label { font-weight: 600; }
+.sn-detail-extra { display: grid; gap: 16px; margin-top: 20px; }
+.sn-buybox, .sn-specs, .sn-reviews, .sn-perks article { background: #fff; border-radius: 16px; padding: 18px; }
+.sn-perks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.sn-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.sn-chip { border: 1px solid var(--line); background: #fff; border-radius: 12px; padding: 10px 14px; font-weight: 600; cursor: pointer; }
+.sn-chip.is-on { border-color: var(--sn); color: var(--sn); background: #EAF6F4; }
+.sn-label { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+.sn-specs table { width: 100%; }
+.sn-specs th { width: 34%; text-align: left; color: var(--muted); font-weight: 600; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.sn-specs td { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.sn-reviews article { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.sn-reviews b { color: #B86E00; letter-spacing: 2px; }
+@media (max-width: 767px) { .sn-perks { grid-template-columns: 1fr; } }
 .sn-page h1 { font-size: 32px; margin: 8px 0 16px; }
 .sn-form { display: grid; gap: 10px; max-width: 480px; background: #fff; padding: 20px; border-radius: 16px; }
 .sn-form input { height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; }

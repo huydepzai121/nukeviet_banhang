@@ -1,4 +1,5 @@
 <!-- BEGIN: main -->
+<h1 class="sn-cart-title">Giỏ hàng</h1>
 <div class="step_bar alert alert-success clearfix">
 	<a class="step step_current" title="{LANG.cart_check_cart}" href="#"><span>1</span>{LANG.cart_check_cart}</a>
 	<a class="step step_disable" title="{LANG.cart_order}" href="{link_order_all}" id="cart_next" rel="dofollow"><span>2</span>{LANG.cart_order}</a>

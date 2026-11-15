@@ -223,6 +223,7 @@
                     </div>
                     <!-- END: order_number -->
                     <div class="clearfix"></div>
+                    {DETAIL_EXTRA}
                     <!-- BEGIN: typepeice -->
                     <table class="table table-striped table-bordered table-hover type-peice">
                         <thead>
@@ -286,6 +287,7 @@
         </div>
     </div>
     <!-- END: keywords -->
+    {DETAIL_LOWER}
     <!-- BEGIN: other -->
     <div class="panel panel-default panel-product-others">
         <div class="panel-heading"><span>{LANG.detail_others}</span></div>

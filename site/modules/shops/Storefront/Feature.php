@@ -408,6 +408,70 @@ function nv_shops_storefront_html()
     return '<div class="sn-home"><p class="sn-sample">Dữ liệu mẫu — giá minh hoạ.</p><div class="sn-hero-grid">' . $hero . '</div><ul class="sn-promises"><li>Giao nhanh nội thành</li><li>Đổi trả 7 ngày</li><li>Bảo hành chính hãng minh hoạ</li><li>Trả góp ước tính</li></ul>' . $flash . $brands . '</div>';
 }
 
+function nv_shops_detail_extra($proId, $price, $sale, $warrantyMonths, $part = 'all')
+{
+    global $db, $db_config;
+    $sell = $sale > 0 ? $sale : $price;
+    $colors = ['Đen', 'Trắng', 'Xanh'];
+    $caps = ['128GB' => 0, '256GB' => 1500000, '512GB' => 3000000];
+    $buy = '<section class="sn-buybox"><h2>Phiên bản</h2><p class="sn-label">Màu</p><div class="sn-chips">';
+    foreach ($colors as $i => $color) {
+        $buy .= '<button type="button" class="sn-chip' . ($i === 0 ? ' is-on' : '') . '" data-group="color">' . htmlspecialchars($color, ENT_QUOTES, 'UTF-8') . '</button>';
+    }
+    $buy .= '</div><p class="sn-label">Dung lượng</p><div class="sn-chips">';
+    $i = 0;
+    foreach ($caps as $label => $extra) {
+        $buy .= '<button type="button" class="sn-chip' . ($i === 0 ? ' is-on' : '') . '" data-group="cap" data-extra="' . (int) $extra . '">' . $label . '</button>';
+        $i++;
+    }
+    $buy .= '</div></section>';
+    $buy .= '<section class="sn-perks"><article><strong>Ưu đãi</strong><p>Giá minh hoạ đã gồm mức giảm trên thẻ. Mã WELCOME10 giảm thêm 10% nếu còn hiệu lực.</p></article><article><strong>Bảo hành</strong><p>' . (int) $warrantyMonths . ' tháng tại cửa hàng Sáng Nhà. Đây là thời hạn mẫu.</p></article><article><strong>Giao hàng</strong><p>Giao tận nơi theo phí tỉnh thành, hoặc nhận tại cửa hàng còn hàng.</p></article></section>';
+    $html = '';
+
+    $specs = [];
+    try {
+        $specs = $db->query('SELECT name, value FROM ' . $db_config['prefix'] . '_shops_spec WHERE pro_id=' . (int) $proId . ' ORDER BY id')->fetchAll();
+    } catch (Exception $e) {
+    }
+    if (!$specs) {
+        $specs = [
+            ['name' => 'Màn hình', 'value' => '6.5 inch'],
+            ['name' => 'Bộ nhớ', 'value' => '128GB'],
+            ['name' => 'Bảo hành', 'value' => $warrantyMonths . ' tháng'],
+            ['name' => 'Xuất xứ', 'value' => 'Lắp ráp'],
+        ];
+    }
+    $html .= '<section class="sn-specs"><h2>Thông số</h2><table>';
+    foreach ($specs as $row) {
+        $html .= '<tr><th>' . htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . '</th><td>' . htmlspecialchars($row['value'], ENT_QUOTES, 'UTF-8') . '</td></tr>';
+    }
+    $html .= '</table></section>';
+
+    $reviews = [];
+    try {
+        $reviews = $db->query('SELECT sender, content, rating FROM ' . $db_config['prefix'] . '_shops_review WHERE product_id=' . (int) $proId . ' AND status=1 ORDER BY review_id DESC LIMIT 4')->fetchAll();
+    } catch (Exception $e) {
+    }
+    $html .= '<section class="sn-reviews"><h2>Đánh giá</h2>';
+    if (!$reviews) {
+        $html .= '<p>Chưa có đánh giá cho sản phẩm này.</p>';
+    }
+    foreach ($reviews as $row) {
+        $stars = str_repeat('★', max(1, min(5, (int) $row['rating']))) . str_repeat('☆', max(0, 5 - (int) $row['rating']));
+        $html .= '<article><b>' . $stars . '</b><strong>' . htmlspecialchars($row['sender'], ENT_QUOTES, 'UTF-8') . '</strong><p>' . htmlspecialchars($row['content'], ENT_QUOTES, 'UTF-8') . '</p></article>';
+    }
+    $html .= '</section>';
+    $html .= '<script>document.querySelectorAll(".sn-chip").forEach(function(btn){btn.addEventListener("click",function(){document.querySelectorAll(".sn-chip[data-group=\'"+btn.getAttribute("data-group")+"\']").forEach(function(x){x.classList.remove("is-on");});btn.classList.add("is-on");var extra=0;document.querySelectorAll(".sn-chip.is-on[data-extra]").forEach(function(x){extra+=parseInt(x.getAttribute("data-extra")||"0",10);});var node=document.querySelector(".info-price .money");if(node){var base=' . (int) $sell . ';node.textContent=(base+extra).toLocaleString("vi-VN")+" \u20ab";}});});</script>';
+    $lower = $html;
+    if ($part === 'buy') {
+        return $buy;
+    }
+    if ($part === 'lower') {
+        return $lower;
+    }
+    return '<div class="sn-detail-extra">' . $buy . $lower . '</div>';
+}
+
 function nv_shops_page($title, $html)
 {
     global $page_title;

@@ -1,4 +1,5 @@
 <!-- BEGIN: main -->
+<h1 class="sn-cart-title">Đặt hàng</h1>
 <script type="text/javascript" data-show="after" src="{NV_STATIC_URL}{NV_ASSETS_DIR}/js/select2/select2.min.js"></script>
 <link href="{NV_STATIC_URL}{NV_ASSETS_DIR}/js/select2/select2.min.css" type="text/css" rel="stylesheet" />
 <div class="block clearfix">
