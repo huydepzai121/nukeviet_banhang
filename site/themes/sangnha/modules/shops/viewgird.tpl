@@ -1,86 +1,57 @@
 <!-- BEGIN: main -->
-<div class="row viewgrid shops-viewgrid shops-viewgrid-{MODULE_NAME}">
+<div class="sn-cards shops-viewgrid shops-viewgrid-{MODULE_NAME}">
     <!-- BEGIN: loop -->
-    <div class="col-sm-12 col-md-{NUM}">
-        <div class="thumbnail">
-            <div style="max-height: {HEIGHT}px" class="item-image">
-                <a href="{ROW.link_pro}" title="{ROW.title}" rel="dofollow"><img src="{ROW.homeimgthumb}" alt="{ROW.title}"
-                <!-- BEGIN: tooltip_js -->data-content='{ROW.hometext}' data-rel="tooltip" data-img="{ROW.homeimgthumb}"<!-- END: tooltip_js -->class="img-thumbnail" style="max-height:{HEIGHT}px;max-width:{WIDTH}px;"></a>
-            </div>
-            <div class="info_pro">
-                <!-- BEGIN: new -->
-                <span class="label label-success newday">{LANG.newday}</span>
-                <!-- END: new -->
+    <article class="sn-card">
+        <a class="sn-card-media" href="{ROW.link_pro}" title="{ROW.title}">
+            <img src="{ROW.homeimgthumb}" alt="{ROW.title}">
+            <!-- BEGIN: discounts -->
+            <span class="sn-badge">-{PRICE.discount_percent}{PRICE.discount_unit}</span>
+            <!-- END: discounts -->
+            <!-- BEGIN: new -->
+            <span class="sn-badge sn-badge-new">{LANG.newday}</span>
+            <!-- END: new -->
+        </a>
+        <div class="sn-card-body">
+            <h3><a href="{ROW.link_pro}">{ROW.title}</a></h3>
+            <!-- BEGIN: product_code --><p class="sn-sku">{PRODUCT_CODE}</p><!-- END: product_code -->
+            <!-- BEGIN: adminlink --><p class="sn-admin">{ADMINLINK}</p><!-- END: adminlink -->
+            <!-- BEGIN: price -->
+            <p class="sn-price">
                 <!-- BEGIN: discounts -->
-                <span class="label label-danger">-{PRICE.discount_percent}{PRICE.discount_unit}</span>
+                <span class="money">{PRICE.sale_format} {PRICE.unit}</span>
+                <span class="discounts_money">{PRICE.price_format} {PRICE.unit}</span>
+                <!-- BEGIN: standard --><!-- END: standard -->
                 <!-- END: discounts -->
-                <!-- BEGIN: point -->
-                <span class="label label-info" title="{point_note}">+{point}</span>
-                <!-- END: point -->
-                <!-- BEGIN: gift -->
-                <span class="label label-success">+<em class="fa fa-gift fa-lg">&nbsp;</em></span>
-                <!-- END: gift -->
+                <!-- BEGIN: no_discounts -->
+                <span class="money">{PRICE.price_format} {PRICE.unit}</span>
+                <!-- END: no_discounts -->
+            </p>
+            <!-- END: price -->
+            <!-- BEGIN: contact -->
+            <p class="sn-price"><span class="money">{LANG.price_contact}</span></p>
+            <!-- END: contact -->
+            <div class="sn-card-actions">
+                <!-- BEGIN: order -->
+                <a href="javascript:void(0)" id="{ROW.id}" title="{ROW.title}" onclick="cartorder(this, {GROUP_REQUIE}, '{ROW.link_pro}'); return !1;"><button type="button" class="btn btn-primary btn-xs">{LANG.add_product}</button></a>
+                <!-- END: order -->
+                <!-- BEGIN: product_empty -->
+                <button class="btn btn-danger disabled btn-xs" type="button">{LANG.product_empty}</button>
+                <!-- END: product_empty -->
+                <!-- BEGIN: wishlist -->
+                <button type="button" onclick="wishlist({ROW.id}, this)" class="sn-heart <!-- BEGIN: disabled -->is-on<!-- END: disabled -->" aria-label="{LANG.wishlist}">♡</button>
+                <!-- END: wishlist -->
             </div>
-            <div class="caption text-center">
-                <h3>
-                    <a href="{ROW.link_pro}" title="{ROW.title}" rel="dofollow">{ROW.title}</a>
-                </h3>
-                <!-- BEGIN: product_code -->
-                <p class="label label-default">{PRODUCT_CODE}</p>
-                <!-- END: product_code -->
-                <!-- BEGIN: adminlink -->
-                <p>{ADMINLINK}</p>
-                <!-- END: adminlink -->
-                <!-- BEGIN: price -->
-                <p class="price">
-                    <!-- BEGIN: discounts -->
-                    <span class="money">{PRICE.sale_format} {PRICE.unit}</span> <span class="discounts_money">{PRICE.price_format} {PRICE.unit}</span>
-                    <!-- END: discounts -->
-                    <!-- BEGIN: no_discounts -->
-                    <span class="money">{PRICE.price_format} {PRICE.unit}</span>
-                    <!-- END: no_discounts -->
-                </p>
-                <!-- END: price -->
-                <!-- BEGIN: contact -->
-                <p class="price">
-                    {LANG.detail_pro_price}: <span class="money">{LANG.price_contact}</span>
-                </p>
-                <!-- END: contact -->
-                <!-- BEGIN: compare -->
-                <p>
-                    <input type="checkbox" value="{ROW.id}" {ch} onclick="nv_compare({ROW.id});" id="compare_{ROW.id}" /><a href="#" onclick="nv_compare_click();">&nbsp;{LANG.compare}</a>
-                </p>
-                <!-- END: compare -->
-                <div class="clearfix">
-                    <!-- BEGIN: order -->
-                    <a href="javascript:void(0)" id="{ROW.id}" title="{ROW.title}" onclick="cartorder(this, {GROUP_REQUIE}, '{ROW.link_pro}'); return !1;"><button type="button" class="btn btn-primary btn-xs">{LANG.add_product}</button></a>
-                    <!-- END: order -->
-                    <!-- BEGIN: product_empty -->
-                    <button class="btn btn-danger disabled btn-xs">{LANG.product_empty}</button>
-                    <!-- END: product_empty -->
-                    <!-- BEGIN: wishlist -->
-                    <a href="javascript:void(0)" title="{ROW.title}"><button type="button" onclick="wishlist({ROW.id}, this)" class="btn btn-primary btn-xs <!-- BEGIN: disabled -->disabled<!-- END: disabled -->">{LANG.wishlist}</button></a>
-                    <!-- END: wishlist -->
-                </div>
-            </div>
+            <!-- BEGIN: point --><span class="sn-point" title="{point_note}">+{point}</span><!-- END: point -->
+            <!-- BEGIN: gift --><span class="sn-point">{LANG.gift}</span><!-- END: gift -->
+            <!-- BEGIN: compare -->
+            <label class="sn-compare"><input type="checkbox" value="{ROW.id}" {ch} onclick="nv_compare({ROW.id});" id="compare_{ROW.id}" />{LANG.compare}</label>
+            <!-- END: compare -->
+            <!-- BEGIN: tooltip_js --><!-- END: tooltip_js -->
         </div>
-    </div>
+    </article>
     <!-- END: loop -->
-    <!-- BEGIN: page -->
-    <div class="text-center w-100 gen-page">{PAGE}</div>
-    <!-- END: page -->
 </div>
-<!-- BEGIN: tooltip_js -->
-<script type="text/javascript" data-show="after">
-    $(document).ready(function() {
-        $("[data-rel='tooltip']").tooltip({
-            placement : "bottom",
-            html : true,
-            title : function() {
-                return '<p class="text-justify">' + $(this).data('content') + '</p><div class="clearfix"></div>';
-            }
-        });
-    });
-</script>
-<!-- END: tooltip_js -->
+<!-- BEGIN: page -->
+<div class="sn-pager">{PAGE}</div>
+<!-- END: page -->
 <!-- END: main -->

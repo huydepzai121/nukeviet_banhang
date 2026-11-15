@@ -365,9 +365,15 @@ function nv_shops_storefront_html()
             ['title' => 'Giao tận nơi hoặc nhận tại cửa hàng', 'subtitle' => 'Phí theo tỉnh thành, miễn phí khi đủ ngưỡng.', 'tone' => 'ink'],
         ];
     }
+    $heroShots = [
+        NV_BASE_SITEURL . 'themes/sangnha/images/catalog/hero.jpg',
+        NV_BASE_SITEURL . 'themes/sangnha/images/catalog/hero-sale.jpg',
+        NV_BASE_SITEURL . 'themes/sangnha/images/catalog/tv.jpg',
+    ];
     $hero = '';
     foreach ($banners as $i => $banner) {
-        $hero .= '<a class="sn-hero sn-hero-' . htmlspecialchars($banner['tone'] ?: 'teal', ENT_QUOTES, 'UTF-8') . ($i ? '' : ' is-main') . '" href="' . NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=shops&' . NV_OP_VARIABLE . '=flashsale"><span>' . htmlspecialchars($banner['subtitle'] ?? '', ENT_QUOTES, 'UTF-8') . '</span><strong>' . htmlspecialchars($banner['title'], ENT_QUOTES, 'UTF-8') . '</strong></a>';
+        $shot = $heroShots[$i % count($heroShots)];
+        $hero .= '<a class="sn-hero' . ($i ? '' : ' is-main') . '" href="' . NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=shops&' . NV_OP_VARIABLE . '=flashsale"><img src="' . $shot . '" alt=""><strong>' . htmlspecialchars($banner['title'], ENT_QUOTES, 'UTF-8') . '</strong></a>';
     }
     $flash = '';
     $now = NV_CURRENTTIME;
@@ -399,7 +405,7 @@ function nv_shops_storefront_html()
         }
         $brands .= '</div></section>';
     }
-    return '<div class="sn-home"><div class="sn-hero-grid">' . $hero . '</div><ul class="sn-promises"><li>Giao nhanh nội thành</li><li>Đổi trả 7 ngày</li><li>Bảo hành chính hãng minh hoạ</li><li>Trả góp ước tính</li></ul>' . $flash . $brands . '</div>';
+    return '<div class="sn-home"><p class="sn-sample">Dữ liệu mẫu — giá minh hoạ.</p><div class="sn-hero-grid">' . $hero . '</div><ul class="sn-promises"><li>Giao nhanh nội thành</li><li>Đổi trả 7 ngày</li><li>Bảo hành chính hãng minh hoạ</li><li>Trả góp ước tính</li></ul>' . $flash . $brands . '</div>';
 }
 
 function nv_shops_page($title, $html)

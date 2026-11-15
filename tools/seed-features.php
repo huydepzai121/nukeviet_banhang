@@ -183,6 +183,21 @@ if (in_array('code', $fields, true)) {
     }
 }
 
+$pdo->exec("UPDATE {$shops}_rows r JOIN {$shops}_catalogs c ON c.catid=r.listcatid SET r.homeimgthumb=3, r.homeimgfile=CASE c.vi_alias
+ WHEN 'smartphone' THEN '/themes/sangnha/images/catalog/phone.jpg'
+ WHEN 'dien-thoai-pho-thong' THEN '/themes/sangnha/images/catalog/phone.jpg'
+ WHEN 'laptop' THEN '/themes/sangnha/images/catalog/laptop.jpg'
+ WHEN 'may-tinh-bang' THEN '/themes/sangnha/images/catalog/tablet.jpg'
+ WHEN 'man-hinh-may-tinh' THEN '/themes/sangnha/images/catalog/tv.jpg'
+ WHEN 'loa-tai-nghe' THEN '/themes/sangnha/images/catalog/headphones.jpg'
+ WHEN 'dong-ho-thong-minh' THEN '/themes/sangnha/images/catalog/watch.jpg'
+ WHEN 'smart-tv' THEN '/themes/sangnha/images/catalog/tv.jpg'
+ WHEN 'may-lanh' THEN '/themes/sangnha/images/catalog/ac.jpg'
+ WHEN 'tu-lanh' THEN '/themes/sangnha/images/catalog/fridge.jpg'
+ WHEN 'may-giat' THEN '/themes/sangnha/images/catalog/washer.jpg'
+ WHEN 'gia-dung-nha-bep' THEN '/themes/sangnha/images/catalog/cooker.jpg'
+ ELSE '/themes/sangnha/images/catalog/phone.jpg' END");
+
 $pdo->exec('UPDATE ' . $prefix . '_config SET config_value=\'sangnha\' WHERE lang=\'vi\' AND module=\'global\' AND config_name=\'site_theme\'');
 $pdo->exec('DELETE FROM ' . $prefix . '_vi_modthemes WHERE theme=\'sangnha\'');
 $pdo->exec('INSERT INTO ' . $prefix . '_vi_modthemes (func_id, layout, theme) SELECT func_id, layout, \'sangnha\' FROM ' . $prefix . '_vi_modthemes WHERE theme=\'default\'');
