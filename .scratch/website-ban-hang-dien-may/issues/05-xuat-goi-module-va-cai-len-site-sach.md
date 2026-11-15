@@ -4,7 +4,7 @@
 
 **Blocked by:** 02 Cài shops gốc và bài kiểm thử đầu tiên
 
-**Status:** ready-for-agent
+**Status:** skipped (chủ cửa hàng yêu cầu bỏ qua ngày 15/11/2026; lỗi của mã gốc chỉ sửa khi nó chặn một ticket khác)
 
 - [ ] Có môi trường NukeViet thứ hai, dựng và xoá được bằng lệnh, không đụng dữ liệu site chính
 - [ ] Gói xuất từ quản trị site chính cài được lên site thứ hai không lỗi

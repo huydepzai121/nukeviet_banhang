@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bố cục mức khối - Sáng Nhà (bản chờ duyệt)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p6:#0D6E6A;--p7:#0A5754;--p1:#D5EDEA;--p0:#EAF6F4;--s9:#102A30;--a6:#C2185B;--a7:#9C1249;--a0:#FDEAF1;
+--n9:#14252A;--n7:#3F5257;--n5:#62757A;--n4:#7C8D91;--n3:#C9D3D5;--n1:#EEF2F2;--n0:#F6F8F8}
+*{box-sizing:border-box}
+body{margin:0;padding:24px;font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--n9);background:#fff;line-height:1.5}
+h1{font-size:26px;margin:0 0 4px}
+h2{font-size:20px;margin:40px 0 4px;padding-top:16px;border-top:2px solid var(--n3)}
+p.lead{margin:0 0 12px;color:var(--n7);max-width:960px}
+nav.toc a{color:var(--p7);margin-right:16px;font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;font-size:12px}
+.legend .x{flex:none}
+.pair{display:flex;gap:28px;align-items:flex-start;overflow-x:auto;padding-bottom:12px}
+.frame{flex:none;border:2px solid var(--n9);border-radius:10px;background:#fff;overflow:hidden}
+.frame.d{width:1040px}
+.frame.m{width:340px}
+.cap{background:var(--n9);color:#fff;font-size:12px;font-weight:600;padding:6px 10px}
+.wf{padding:10px;display:flex;flex-direction:column;gap:8px;font-size:11px;line-height:1.4}
+.r{display:flex;gap:8px;align-items:stretch}
+.r>*{flex:1;min-width:0}
+.col{display:flex;flex-direction:column;gap:8px}
+.x{border:1px solid var(--n4);border-radius:6px;background:var(--n0);padding:6px 8px}
+.x b{font-weight:600}
+.x.k{border:1.5px dashed var(--p6);background:var(--p0)}
+.x.k::before{content:"BLOCK " attr(data-n) " · " attr(data-b);display:block;font-weight:700;font-size:10px;color:var(--p7);letter-spacing:.02em}
+.x.k.fs{border-color:var(--a6);background:var(--a0)}
+.x.k.fs::before{color:var(--a7)}
+.x.pfs{border-color:var(--a6);background:var(--a0)}
+.x.dk{background:var(--s9);color:#fff;border-color:var(--s9)}
+.x.cta{background:var(--p6);color:#fff;border-color:var(--p6);font-weight:600;text-align:center}
+.x.cta2{background:#fff;color:var(--p7);border:1.5px solid var(--p6);font-weight:600;text-align:center}
+.x.fix{border-style:solid;border-width:2px;box-shadow:0 -2px 0 var(--n3)}
+.note{color:var(--n7);font-size:10px}
+.cards{display:grid;grid-template-columns:repeat(var(--n,5),1fr);gap:6px;margin-top:6px}
+.c{border:1px solid var(--n3);background:#fff;border-radius:4px;height:var(--h,74px)}
+.c::before{content:"";display:block;margin:5px 5px 6px;height:48%;background:var(--n1);border-radius:3px}
+.c::after{content:"";display:block;margin:0 5px;height:3px;width:65%;background:var(--n3);box-shadow:0 7px 0 var(--n3),0 14px 0 var(--p6)}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.chips span{border:1px solid var(--n4);border-radius:999px;padding:1px 8px;background:#fff}
+.chips span.on{border-color:var(--p6);background:var(--p0);color:var(--p7);font-weight:600}
+.chips span.off{color:var(--n5);text-decoration:line-through;border-style:dashed}
+.img{background:var(--n1);border:1px solid var(--n3);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--n7)}
+ul.t{margin:4px 0 0;padding-left:16px}
+@media print{.pair{overflow:visible;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+
+<h1>Bố cục mức khối - Sáng Nhà</h1>
+<p class="lead">Bản vẽ khung (wireframe) cho năm trang chính, mỗi trang hai bản: máy tính và điện thoại. Đây là sơ đồ vị trí các khối, chưa phải giao diện hoàn chỉnh. Tên sản phẩm và giá trong bản vẽ là minh hoạ. Tài liệu chờ chủ cửa hàng duyệt; chi tiết xem <a href="design-brief.md">design-brief.md</a>, thành phần lặp lại xem <a href="components.html">components.html</a>.</p>
+<nav class="toc"><a href="#trang-chu">1. Trang chủ</a><a href="#nganh-hang">2. Ngành hàng</a><a href="#chi-tiet">3. Chi tiết sản phẩm</a><a href="#gio-hang">4. Giỏ hàng</a><a href="#dat-hang">5. Đặt hàng</a></nav>
+<div class="legend">
+  <div class="x k" data-n="29" data-b="Tên block">Block của module shops (số 29 hoặc 30 là ticket dựng block đó). Quản trị đặt bằng trang quản lý block.</div>
+  <div class="x k fs" data-n="29" data-b="Flash sale có đếm ngược">Block dùng màu nhấn khuyến mãi.</div>
+  <div class="x">Phần của trang (module trả dữ liệu, theme trình bày) hoặc phần tĩnh của theme.</div>
+  <div class="x fix">Viền đậm: phần dính (luôn nằm trên màn hình khi cuộn).</div>
+</div>
+
+<!-- ============================ 1. TRANG CHU ============================ -->
+<h2 id="trang-chu">1. Trang chủ</h2>
+<p class="lead">Mục tiêu: trong màn hình đầu tiên khách thấy được ô tìm kiếm, cây ngành hàng và chương trình đang chạy; cuộn xuống là các nhóm gợi ý. Block không có dữ liệu thì ẩn hẳn, các khối bên dưới dồn lên.</p>
+<div class="pair">
+  <div class="frame d">
+    <div class="cap">Máy tính (từ 1024px, khung nội dung tối đa 1200px, lưới 12 cột)</div>
+    <div class="wf">
+      <div class="x dk">Thanh tiện ích: Hệ thống cửa hàng · Tra cứu bảo hành · Tin tức · [Số điện thoại] &nbsp;|&nbsp; Đăng nhập / Đăng ký (mở hộp thoại)</div>
+      <div class="r">
+        <div class="x" style="flex:2"><b>Logo Sáng Nhà</b><br>về trang chủ</div>
+        <div class="x k" data-n="30" data-b="Ô tìm kiếm có gợi ý" style="flex:5">Gõ là hiện gợi ý sản phẩm (ảnh, tên, giá), không phân biệt dấu.</div>
+        <div class="x k" data-n="30" data-b="Tra cứu đơn hàng nhanh" style="flex:2">Nút mở hộp nhỏ: số điện thoại + mã đơn.</div>
+        <div class="x" style="flex:1.4">Tài khoản / Yêu thích</div>
+        <div class="x k" data-n="30" data-b="Giỏ hàng thu nhỏ có xem nhanh" style="flex:2">Biểu tượng + số lượng; rê chuột hiện xem nhanh.</div>
+      </div>
+      <div class="x fix">Thanh điều hướng (dính khi cuộn): [≡ Ngành hàng] · Flash sale · Trả góp · Thu cũ đổi mới · Hệ thống cửa hàng · Tin tức</div>
+      <div class="r">
+        <div class="x k" data-n="29" data-b="Menu ngành hàng nhiều cấp" style="flex:3;min-height:190px">Cột 3/12, mở sẵn ở trang chủ. Rê vào một Ngành hàng hiện bảng con: Ngành hàng cấp dưới + Thương hiệu.
+          <ul class="t"><li>Điện thoại</li><li>Máy tính xách tay</li><li>Tivi</li><li>Tủ lạnh</li><li>Máy giặt</li><li>Máy lạnh</li><li>Gia dụng</li><li>Phụ kiện</li></ul></div>
+        <div class="x k" data-n="29" data-b="Banner khuyến mãi (vị trí chính, dạng trượt)" style="flex:6;min-height:190px">Cột 6/12. Ảnh tỉ lệ 2:1, tối đa 5 ảnh, có chấm chuyển và nút tạm dừng.</div>
+        <div class="col" style="flex:3">
+          <div class="x k" data-n="29" data-b="Banner khuyến mãi (phụ 1)" style="flex:1">Cột 3/12, ảnh 2:1.</div>
+          <div class="x k" data-n="29" data-b="Banner khuyến mãi (phụ 2)" style="flex:1">Cột 3/12, ảnh 2:1.</div>
+        </div>
+      </div>
+      <div class="x">Dải cam kết dịch vụ (phần tĩnh của theme, 4 ô có biểu tượng): [Cam kết 1] · [Cam kết 2] · [Cam kết 3] · [Cam kết 4]. Nội dung do chủ cửa hàng điền.</div>
+      <div class="x k fs" data-n="29" data-b="Flash sale có đếm ngược">Tiêu đề Đợt flash sale + đồng hồ đếm ngược + liên kết "Xem tất cả" và "Đợt sắp tới". Trượt ngang 5 thẻ; mỗi thẻ có giá flash sale, giá gốc, mức giảm và thanh Suất còn lại. Ẩn khi không có Đợt flash sale đang chạy.
+        <div class="cards" style="--n:5"><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+      <div class="x k" data-n="29" data-b="Sản phẩm theo ngành hàng dạng thẻ chuyển">Hàng thẻ chuyển: <span class="chips" style="display:inline-flex"><span class="on">Điện thoại</span><span>Máy tính xách tay</span><span>Tivi</span><span>Tủ lạnh</span><span>Máy giặt</span></span> Lưới 5 cột x 2 hàng, cuối có "Xem tất cả [Ngành hàng]".
+        <div class="cards" style="--n:5"><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+      <div class="x k" data-n="29" data-b="Banner khuyến mãi (dải ngang giữa trang)" style="min-height:44px">Rộng 12/12, ảnh 6:1.</div>
+      <div class="x k" data-n="29" data-b="Bán chạy">Trượt ngang 5 thẻ, có số thứ tự xếp hạng.
+        <div class="cards" style="--n:5"><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+      <div class="x k" data-n="29" data-b="Mới về">Lưới 5 cột x 1 hàng, thẻ có nhãn "Mới".
+        <div class="cards" style="--n:5"><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+      <div class="x k" data-n="29" data-b="Giảm giá nhiều nhất">Trượt ngang 5 thẻ, sắp theo mức giảm.
+        <div class="cards" style="--n:5"><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+      <div class="x k" data-n="29" data-b="Thương hiệu nổi bật">Lưới 8 logo Thương hiệu trên một hàng, bấm vào tới trang Thương hiệu.
+        <div class="cards" style="--n:8;--h:30px"><div class="img" style="height:30px"></div><div class="img" style="height:30px"></div><div class="img" style="height:30px"></div><div class="img" style="height:30px"></div><div class="img" style="height:30px"></div><div class="img" style="height:30px"></div><div class="img" style="height:30px"></div><div class="img" style="height:30px"></div></div></div>
+      <div class="x k" data-n="30" data-b="Sản phẩm đã xem gần đây">Trượt ngang, thẻ thu gọn. Ẩn khi khách chưa xem sản phẩm nào.</div>
+      <div class="x">Tin tức và tư vấn (module tin tức): 4 bài mới nhất, bài có liên kết tới sản phẩm.</div>
+      <div class="x dk">Chân trang, 4 cột: (1) Logo bản nền tối + [Địa chỉ] · [Số điện thoại] · [Email] &nbsp; (2) Hỗ trợ: tra cứu đơn hàng, tra cứu bảo hành, trả góp, thu cũ đổi mới &nbsp; (3) Chính sách (trang do chủ cửa hàng soạn) &nbsp; (4) Hệ thống cửa hàng + cách thanh toán được nhận</div>
+      <div class="x k fix" data-n="30" data-b="Thanh so sánh nổi">Dính đáy màn hình, chỉ hiện khi đã chọn ít nhất 1 sản phẩm để so sánh (tối đa 4). Có nút "So sánh ngay" và "Xoá hết".</div>
+    </div>
+  </div>
+
+  <div class="frame m">
+    <div class="cap">Điện thoại (320 đến 767px, một cột)</div>
+    <div class="wf">
+      <div class="x fix">
+        <div class="r"><div class="x" style="flex:1">≡</div><div class="x" style="flex:4"><b>Logo</b></div><div class="x k" data-n="30" data-b="Giỏ hàng thu nhỏ" style="flex:3">Biểu tượng + số</div></div>
+        <div class="x k" data-n="30" data-b="Ô tìm kiếm có gợi ý" style="margin-top:6px">Gợi ý mở toàn màn hình.</div>
+        <div class="note">Đầu trang dính. Nút ≡ mở ngăn kéo trái.</div>
+      </div>
+      <div class="x k" data-n="29" data-b="Menu ngành hàng nhiều cấp">Nằm trong ngăn kéo trái (mở bằng ≡): Ngành hàng xếp dạng mở rộng từng cấp, kèm Thương hiệu. Cuối ngăn kéo: block <b>Tra cứu đơn hàng nhanh (30)</b>, Hệ thống cửa hàng, Đăng nhập.</div>
+      <div class="x k" data-n="29" data-b="Banner khuyến mãi (chính, trượt)" style="min-height:70px">Rộng hết màn hình, ảnh 2:1. Hai banner phụ nối vào cùng dải trượt.</div>
+      <div class="x">Dải biểu tượng Ngành hàng cấp 1, trượt ngang (phần của theme, liên kết tới trang Ngành hàng).</div>
+      <div class="x k fs" data-n="29" data-b="Flash sale có đếm ngược">Đồng hồ ở cùng dòng tiêu đề. Trượt ngang, thấy 2,3 thẻ.
+        <div class="cards" style="--n:3"><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+      <div class="x k" data-n="29" data-b="Sản phẩm theo ngành hàng dạng thẻ chuyển">Thẻ chuyển trượt ngang. Lưới 2 cột x 3 hàng + "Xem tất cả".
+        <div class="cards" style="--n:2"><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+      <div class="x k" data-n="29" data-b="Banner khuyến mãi (dải ngang)">Ảnh 3:1.</div>
+      <div class="x k" data-n="29" data-b="Bán chạy">Trượt ngang 2,3 thẻ.</div>
+      <div class="x k" data-n="29" data-b="Mới về">Lưới 2 cột x 2 hàng.</div>
+      <div class="x k" data-n="29" data-b="Giảm giá nhiều nhất">Trượt ngang 2,3 thẻ.</div>
+      <div class="x k" data-n="29" data-b="Thương hiệu nổi bật">Lưới 4 cột x 2 hàng.</div>
+      <div class="x k" data-n="30" data-b="Sản phẩm đã xem gần đây">Trượt ngang.</div>
+      <div class="x">Tin tức và tư vấn: 3 bài, xếp dọc.</div>
+      <div class="x dk">Chân trang: các nhóm liên kết dạng mở rộng; [Địa chỉ] · [Số điện thoại] · [Email]</div>
+      <div class="x k fix" data-n="30" data-b="Thanh so sánh nổi">Thu gọn thành một dòng "So sánh (2)" nằm ngay trên thanh đáy.</div>
+      <div class="x fix">Thanh đáy (dính, phần của theme): Trang chủ · Ngành hàng · Flash sale · Giỏ hàng · Tài khoản</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ 2. NGANH HANG ============================ -->
+<h2 id="nganh-hang">2. Trang ngành hàng có bộ lọc</h2>
+<p class="lead">Mục tiêu: thu hẹp nhanh còn vài lựa chọn. Mỗi lựa chọn lọc hiện số sản phẩm khớp; lựa chọn cho kết quả rỗng thì mờ đi. Trạng thái lọc và sắp xếp nằm trong địa chỉ trang.</p>
+<div class="pair">
+  <div class="frame d">
+    <div class="cap">Máy tính</div>
+    <div class="wf">
+      <div class="x dk">Thanh tiện ích (như trang chủ)</div>
+      <div class="r">
+        <div class="x" style="flex:2"><b>Logo</b></div>
+        <div class="x k" data-n="30" data-b="Ô tìm kiếm có gợi ý" style="flex:5"></div>
+        <div class="x k" data-n="30" data-b="Tra cứu đơn hàng nhanh" style="flex:2"></div>
+        <div class="x" style="flex:1.4">Tài khoản</div>
+        <div class="x k" data-n="30" data-b="Giỏ hàng thu nhỏ có xem nhanh" style="flex:2"></div>
+      </div>
+      <div class="x k fix" data-n="29" data-b="Menu ngành hàng nhiều cấp">Thu vào nút [≡ Ngành hàng] trên thanh điều hướng, bấm thì xổ xuống. Cùng thanh: Flash sale · Trả góp · Thu cũ đổi mới · Hệ thống cửa hàng · Tin tức</div>
+      <div class="x">Đường dẫn: Trang chủ › Điện thoại</div>
+      <div class="x"><b>Tiêu đề Ngành hàng</b> + số sản phẩm. Hàng Ngành hàng cấp dưới dạng viên bấm. Hàng logo Thương hiệu để lọc nhanh.</div>
+      <div class="r">
+        <div class="x k" data-n="30" data-b="Bộ lọc" style="flex:3">Cột 3/12, dính theo khi cuộn.
+          <ul class="t"><li>Thương hiệu (ô chọn + số khớp)</li><li>Khoảng giá (mức định sẵn + ô nhập từ, đến)</li><li>Từng Thông số được đánh dấu dùng để lọc, ví dụ Dung lượng, Kích thước màn hình (ô chọn + số khớp)</li><li>Chỉ hiện hàng còn</li><li>Nút "Xoá tất cả"</li></ul>
+          <div class="note">Mỗi nhóm thu gọn được; quá 6 lựa chọn thì có "Xem thêm".</div></div>
+        <div class="col" style="flex:9">
+          <div class="x">Bộ lọc đang chọn: <span class="chips" style="display:inline-flex"><span class="on">Thương hiệu A ✕</span><span class="on">256GB ✕</span><span>Xoá tất cả</span></span></div>
+          <div class="x">Sắp xếp (dạng thẻ): Bán chạy · Mới nhất · Giảm nhiều · Giá thấp đến cao · Giá cao đến thấp &nbsp;|&nbsp; Hiển thị "1 đến 20 trong 86 sản phẩm"</div>
+          <div class="x">Lưới sản phẩm 4 cột (thẻ sản phẩm chuẩn, có ô "So sánh" và nút yêu thích)
+            <div class="cards" style="--n:4;--h:92px"><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+          <div class="x">Phân trang (số trang, có trong địa chỉ trang)</div>
+          <div class="x">Trạng thái rỗng: "Không có sản phẩm khớp bộ lọc" + nút "Xoá bộ lọc"</div>
+        </div>
+      </div>
+      <div class="x">Mô tả Ngành hàng (đoạn văn ngắn, thu gọn được)</div>
+      <div class="x k" data-n="30" data-b="Sản phẩm đã xem gần đây">Trượt ngang.</div>
+      <div class="x dk">Chân trang (như trang chủ)</div>
+      <div class="x k fix" data-n="30" data-b="Thanh so sánh nổi">Dính đáy, hiện khi đã chọn sản phẩm so sánh.</div>
+    </div>
+  </div>
+
+  <div class="frame m">
+    <div class="cap">Điện thoại</div>
+    <div class="wf">
+      <div class="x fix">Đầu trang dính: ≡ · Logo · <b>Giỏ hàng thu nhỏ (30)</b>; dòng dưới: <b>Ô tìm kiếm có gợi ý (30)</b></div>
+      <div class="x">Đường dẫn (rút gọn, trượt ngang) · <b>Tiêu đề Ngành hàng</b> + số sản phẩm</div>
+      <div class="x">Ngành hàng cấp dưới: viên bấm trượt ngang</div>
+      <div class="x fix"><div class="r"><div class="x cta2">Bộ lọc (2)</div><div class="x cta2">Sắp xếp: Bán chạy ▾</div></div><div class="note">Thanh công cụ dính dưới đầu trang.</div></div>
+      <div class="x">Bộ lọc đang chọn: viên bấm trượt ngang, có ✕</div>
+      <div class="x">Lưới 2 cột
+        <div class="cards" style="--n:2;--h:92px"><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+      <div class="x">Phân trang (nút Trước / Sau + số trang)</div>
+      <div class="x k" data-n="30" data-b="Sản phẩm đã xem gần đây">Trượt ngang.</div>
+      <div class="x dk">Chân trang</div>
+      <div class="x k fix" data-n="30" data-b="Thanh so sánh nổi">Một dòng "So sánh (2)" trên thanh đáy.</div>
+      <div class="x fix">Thanh đáy: Trang chủ · Ngành hàng · Flash sale · Giỏ hàng · Tài khoản</div>
+    </div>
+  </div>
+
+  <div class="frame m">
+    <div class="cap">Điện thoại: bộ lọc mở dạng ngăn kéo</div>
+    <div class="wf">
+      <div class="x" style="opacity:.45">Trang Ngành hàng phía sau bị phủ mờ; bấm vùng mờ để đóng.</div>
+      <div class="x k" data-n="30" data-b="Bộ lọc (ngăn kéo từ đáy, cao 85% màn hình)">
+        <div class="x" style="margin-top:6px"><b>Bộ lọc</b> · nút ✕ đóng</div>
+        <div class="x" style="margin-top:6px">Thương hiệu<div class="chips"><span class="on">Thương hiệu A (12)</span><span>Thương hiệu B (9)</span><span class="off">Thương hiệu C (0)</span></div></div>
+        <div class="x" style="margin-top:6px">Khoảng giá<div class="chips"><span>Dưới 5 triệu (8)</span><span>5 đến 10 triệu (21)</span><span>Trên 10 triệu (14)</span></div></div>
+        <div class="x" style="margin-top:6px">Thông số: Dung lượng<div class="chips"><span>128GB (10)</span><span class="on">256GB (17)</span><span>512GB (6)</span></div></div>
+        <div class="x fix" style="margin-top:6px"><div class="r"><div class="x cta2">Xoá tất cả</div><div class="x cta" style="flex:2">Xem 17 sản phẩm</div></div><div class="note">Thanh nút dính đáy ngăn kéo. Số kết quả cập nhật ngay khi chọn.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ 3. CHI TIET ============================ -->
+<h2 id="chi-tiet">3. Trang chi tiết sản phẩm (chọn biến thể)</h2>
+<p class="lead">Mục tiêu: khách biết chính xác Biến thể mình sắp mua (giá, ảnh, tình trạng hàng, Cửa hàng còn hàng) và bấm mua mà không phải cuộn. Chọn Biến thể thì giá, ảnh, tình trạng hàng và block cửa hàng còn hàng đổi theo, không tải lại trang.</p>
+<div class="pair">
+  <div class="frame d">
+    <div class="cap">Máy tính</div>
+    <div class="wf">
+      <div class="x dk">Thanh tiện ích</div>
+      <div class="r">
+        <div class="x" style="flex:2"><b>Logo</b></div>
+        <div class="x k" data-n="30" data-b="Ô tìm kiếm có gợi ý" style="flex:5"></div>
+        <div class="x k" data-n="30" data-b="Tra cứu đơn hàng nhanh" style="flex:2"></div>
+        <div class="x" style="flex:1.4">Tài khoản</div>
+        <div class="x k" data-n="30" data-b="Giỏ hàng thu nhỏ có xem nhanh" style="flex:2">Mở xem nhanh sau khi thêm vào giỏ.</div>
+      </div>
+      <div class="x k fix" data-n="29" data-b="Menu ngành hàng nhiều cấp">Thu vào nút [≡ Ngành hàng] trên thanh điều hướng.</div>
+      <div class="x">Đường dẫn: Trang chủ › Điện thoại › Thương hiệu A › Điện thoại mẫu 256GB</div>
+      <div class="r">
+        <div class="col" style="flex:5">
+          <div class="img" style="height:230px">Ảnh chính 1:1 (đổi theo Biến thể), bấm để phóng to</div>
+          <div class="cards" style="--n:6;margin-top:0"><div class="img" style="height:34px"></div><div class="img" style="height:34px"></div><div class="img" style="height:34px"></div><div class="img" style="height:34px"></div><div class="img" style="height:34px"></div><div class="img" style="height:34px"></div></div>
+          <div class="note">Cột ảnh 5/12, dính theo khi cuộn phần thông tin.</div>
+        </div>
+        <div class="col" style="flex:4">
+          <div class="x"><b>Điện thoại mẫu 256GB</b> (tên sản phẩm, H1)<br>Thương hiệu A · ★ 4,6 (128 đánh giá) · Mã hàng</div>
+          <div class="x pfs"><b>Dải flash sale</b> (phần của trang, không phải block): Đang trong Đợt flash sale · kết thúc sau 02:15:40 · còn 12/50 Suất</div>
+          <div class="x"><b>Giá bán 8.990.000 ₫</b> · giá gốc gạch ngang 10.990.000 ₫ · nhãn −18% <span class="note">(giá minh hoạ)</span></div>
+          <div class="x">Chọn Biến thể: Dung lượng
+            <div class="chips"><span>128GB · 7.990.000 ₫</span><span class="on">256GB · 8.990.000 ₫</span><span>512GB · 10.990.000 ₫</span></div>
+            Màu
+            <div class="chips"><span class="on">Đen</span><span>Xanh lam</span><span class="off">Trắng (hết hàng)</span></div>
+            <div class="note">Biến thể hết hàng vẫn hiện, gạch mờ, không chọn mua được.</div></div>
+          <div class="x">Nhãn tồn kho: Còn hàng · Số lượng [− 1 +]</div>
+          <div class="r"><div class="x cta">Mua ngay</div><div class="x cta2">Thêm vào giỏ</div></div>
+          <div class="r"><div class="x">Trả góp: ước tính mỗi tháng</div><div class="x">Thu cũ đổi mới</div></div>
+          <div class="x">☐ So sánh · ♡ Yêu thích</div>
+        </div>
+        <div class="col" style="flex:3">
+          <div class="x k" data-n="30" data-b="Cửa hàng còn hàng">Theo Biến thể đang chọn. Chọn tỉnh thành; danh sách Cửa hàng còn hàng kèm địa chỉ và giờ mở cửa; liên kết "Nhận tại cửa hàng này".</div>
+          <div class="x">Cam kết dịch vụ: [Cam kết 1] · [Cam kết 2] · [Cam kết 3]</div>
+        </div>
+      </div>
+      <div class="x k" data-n="30" data-b="Thường được mua cùng">Rộng 12/12. Sản phẩm chính + các phụ kiện có ô chọn, tổng tiền gộp và nút "Thêm tất cả vào giỏ".
+        <div class="cards" style="--n:5;--h:60px"><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div></div></div>
+      <div class="r">
+        <div class="col" style="flex:8">
+          <div class="x" style="min-height:70px">Mô tả sản phẩm (thu gọn, có "Xem thêm")</div>
+          <div class="x" style="min-height:60px">Đánh giá: điểm trung bình, phân bố số sao, danh sách đánh giá, nút "Viết đánh giá" (Thành viên đã mua)</div>
+          <div class="x" style="min-height:50px">Hỏi đáp: ô đặt câu hỏi + danh sách câu hỏi và trả lời của cửa hàng</div>
+        </div>
+        <div class="col" style="flex:4">
+          <div class="x" style="min-height:120px">Bảng Thông số (10 dòng chính, kẻ dòng xen kẽ) + nút "Xem đầy đủ thông số" mở hộp thoại. Cột 4/12, dính theo khi cuộn.</div>
+          <div class="x">Tin tức liên quan tới sản phẩm</div>
+        </div>
+      </div>
+      <div class="x">Sản phẩm tương tự (trượt ngang 5 thẻ)</div>
+      <div class="x k" data-n="30" data-b="Sản phẩm đã xem gần đây">Trượt ngang.</div>
+      <div class="x dk">Chân trang</div>
+      <div class="x k fix" data-n="30" data-b="Thanh so sánh nổi">Dính đáy.</div>
+    </div>
+  </div>
+
+  <div class="frame m">
+    <div class="cap">Điện thoại</div>
+    <div class="wf">
+      <div class="x fix">Đầu trang dính: ← · Logo · tìm kiếm · <b>Giỏ hàng thu nhỏ (30)</b></div>
+      <div class="img" style="height:190px">Ảnh 1:1, vuốt ngang, có số "1/6"</div>
+      <div class="x pfs"><b>Dải flash sale</b> (phần của trang): Kết thúc sau 02:15:40 · còn 12/50 Suất</div>
+      <div class="x"><b>Điện thoại mẫu 256GB</b><br>Thương hiệu A · ★ 4,6 (128)</div>
+      <div class="x"><b>8.990.000 ₫</b> · <s>10.990.000 ₫</s> · −18% <span class="note">(giá minh hoạ)</span></div>
+      <div class="x">Chọn Biến thể
+        <div class="chips"><span>128GB</span><span class="on">256GB</span><span>512GB</span></div>
+        <div class="chips"><span class="on">Đen</span><span>Xanh lam</span><span class="off">Trắng</span></div></div>
+      <div class="x">Nhãn tồn kho · ☐ So sánh · ♡ Yêu thích</div>
+      <div class="x k" data-n="30" data-b="Cửa hàng còn hàng">Thu gọn một dòng "Còn hàng tại 3 Cửa hàng ▾", bấm mở danh sách.</div>
+      <div class="x">Trả góp · Thu cũ đổi mới (2 ô cạnh nhau)</div>
+      <div class="x k" data-n="30" data-b="Thường được mua cùng">Danh sách dọc có ô chọn + "Thêm tất cả vào giỏ".</div>
+      <div class="x">Bảng Thông số (6 dòng) + "Xem đầy đủ thông số" (mở toàn màn hình)</div>
+      <div class="x">Mô tả (thu gọn)</div>
+      <div class="x">Đánh giá</div>
+      <div class="x">Hỏi đáp</div>
+      <div class="x">Sản phẩm tương tự (trượt ngang)</div>
+      <div class="x k" data-n="30" data-b="Sản phẩm đã xem gần đây">Trượt ngang.</div>
+      <div class="x dk">Chân trang</div>
+      <div class="x fix"><div class="r"><div class="x" style="flex:1">Giỏ</div><div class="x cta2" style="flex:3">Thêm vào giỏ</div><div class="x cta" style="flex:3">Mua ngay</div></div><div class="note">Thanh mua hàng dính đáy, thay cho thanh đáy chung ở trang này. Thanh so sánh nổi (30) nằm ngay phía trên khi có.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ 4. GIO HANG ============================ -->
+<h2 id="gio-hang">4. Giỏ hàng</h2>
+<p class="lead">Mục tiêu: khách soát lại hàng, biết tổng tiền thật (mã giảm giá, ngưỡng miễn phí vận chuyển) rồi đi tiếp. Đổi số lượng và xoá dòng cập nhật tổng tiền ngay, không tải lại trang.</p>
+<div class="pair">
+  <div class="frame d">
+    <div class="cap">Máy tính</div>
+    <div class="wf">
+      <div class="x dk">Thanh tiện ích</div>
+      <div class="r">
+        <div class="x" style="flex:2"><b>Logo</b></div>
+        <div class="x k" data-n="30" data-b="Ô tìm kiếm có gợi ý" style="flex:5"></div>
+        <div class="x k" data-n="30" data-b="Tra cứu đơn hàng nhanh" style="flex:2"></div>
+        <div class="x" style="flex:1.4">Tài khoản</div>
+        <div class="x k" data-n="30" data-b="Giỏ hàng thu nhỏ" style="flex:2">Chỉ hiện số; tắt xem nhanh ở trang này.</div>
+      </div>
+      <div class="x k fix" data-n="29" data-b="Menu ngành hàng nhiều cấp">Thu vào nút [≡ Ngành hàng].</div>
+      <div class="x">Các bước: <b>1. Giỏ hàng</b> › 2. Thông tin đặt hàng › 3. Hoàn tất</div>
+      <div class="r">
+        <div class="col" style="flex:8">
+          <div class="x">Thanh miễn phí vận chuyển: "Mua thêm 510.000 ₫ để được miễn phí vận chuyển" + thanh tiến độ <span class="note">(số minh hoạ)</span></div>
+          <div class="x"><b>Dòng hàng 1</b>: ảnh · Điện thoại mẫu 256GB · Biến thể: 256GB, Đen · nhãn Flash sale · đơn giá · [− 1 +] · thành tiền · Xoá</div>
+          <div class="x"><b>Dòng hàng 2</b>: ảnh · Tai nghe mẫu · đơn giá · [− 3 +] · thành tiền · Xoá<br><span style="color:#B42318">Báo lỗi ngay dưới dòng: "Chỉ còn 2 sản phẩm, đã chỉnh số lượng về 2"</span></div>
+          <div class="x">Liên kết "Tiếp tục mua hàng"</div>
+        </div>
+        <div class="col" style="flex:4">
+          <div class="x fix">Tóm tắt (dính theo khi cuộn)
+            <div class="x" style="margin-top:6px">Mã giảm giá: [ô nhập] [Áp dụng]. Kết quả hiện ngay dưới ô: số tiền được giảm, hoặc lý do mã không dùng được.</div>
+            <div class="x" style="margin-top:6px">Tạm tính · Giảm giá · <b>Tổng tiền</b><br><span class="note">Phí vận chuyển tính ở bước sau.</span></div>
+            <div class="x cta" style="margin-top:6px">Tiến hành đặt hàng</div>
+          </div>
+        </div>
+      </div>
+      <div class="x k" data-n="30" data-b="Thường được mua cùng">Gợi ý theo các sản phẩm đang có trong giỏ, trượt ngang, nút "Thêm" ngay trên thẻ.</div>
+      <div class="x k" data-n="30" data-b="Sản phẩm đã xem gần đây">Trượt ngang.</div>
+      <div class="x">Trạng thái giỏ rỗng: hình minh hoạ + "Giỏ hàng đang trống" + nút "Xem hàng" (thay toàn bộ vùng 2 cột).</div>
+      <div class="x dk">Chân trang</div>
+    </div>
+  </div>
+
+  <div class="frame m">
+    <div class="cap">Điện thoại</div>
+    <div class="wf">
+      <div class="x fix">Đầu trang dính: ← · "Giỏ hàng (2)" · Logo thu nhỏ</div>
+      <div class="x">Các bước: <b>1</b> › 2 › 3</div>
+      <div class="x">Thanh miễn phí vận chuyển + tiến độ</div>
+      <div class="x"><b>Dòng hàng 1</b> (thẻ): ảnh trái; tên, Biến thể, nhãn Flash sale; giá; [− 1 +]; Xoá</div>
+      <div class="x"><b>Dòng hàng 2</b> (thẻ) + báo lỗi tồn kho ngay dưới thẻ</div>
+      <div class="x">Mã giảm giá: [ô nhập] [Áp dụng] + kết quả</div>
+      <div class="x">Tạm tính · Giảm giá · Tổng tiền</div>
+      <div class="x k" data-n="30" data-b="Thường được mua cùng">Trượt ngang.</div>
+      <div class="x k" data-n="30" data-b="Sản phẩm đã xem gần đây">Trượt ngang.</div>
+      <div class="x dk">Chân trang (rút gọn)</div>
+      <div class="x fix"><div class="r"><div class="x" style="flex:2">Tổng tiền<br><b>9.490.000 ₫</b> <span class="note">(minh hoạ)</span></div><div class="x cta" style="flex:3">Tiến hành đặt hàng</div></div><div class="note">Thanh dính đáy, thay cho thanh đáy chung.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ 5. DAT HANG ============================ -->
+<h2 id="dat-hang">5. Đặt hàng</h2>
+<p class="lead">Mục tiêu: Khách vãng lai đặt xong chỉ với họ tên, số điện thoại và địa chỉ. Đầu trang rút gọn để khách không rời luồng; không đặt block gợi ý sản phẩm ở trang này. Tổng tiền luôn nhìn thấy.</p>
+<div class="pair">
+  <div class="frame d">
+    <div class="cap">Máy tính</div>
+    <div class="wf">
+      <div class="x">Đầu trang rút gọn: <b>Logo</b> · Các bước: 1. Giỏ hàng › <b>2. Thông tin đặt hàng</b> › 3. Hoàn tất · [Số điện thoại] hỗ trợ · "Quay lại giỏ hàng"</div>
+      <div class="r">
+        <div class="col" style="flex:7">
+          <div class="x"><b>A. Người nhận</b>: Họ tên* · Số điện thoại* · Email (không bắt buộc, để nhận xác nhận)<br><span class="note">Khách vãng lai: dòng mời "Đăng nhập để điền sẵn" (mở hộp thoại). Thành viên: chọn từ sổ địa chỉ, điền sẵn địa chỉ mặc định.</span></div>
+          <div class="x"><b>B. Cách nhận hàng</b> (2 thẻ chọn một)
+            <div class="r" style="margin-top:6px">
+              <div class="x">◉ Giao tận nơi: Tỉnh thành* (danh sách) · Phường xã* (danh sách) · Địa chỉ cụ thể* · phí vận chuyển hiện ngay sau khi chọn tỉnh thành</div>
+              <div class="x">○ Nhận tại Cửa hàng: chọn tỉnh thành, danh sách Cửa hàng còn đủ hàng cho giỏ này (địa chỉ, giờ mở cửa); phí 0 ₫</div>
+            </div></div>
+          <div class="x"><b>C. Thanh toán</b> (thẻ chọn một, chỉ hiện cách đang bật): Trả tiền khi nhận hàng · Chuyển khoản bằng mã QR · VNPAY · MoMo · ZaloPay<br><span class="note">Chọn Cổng thanh toán trực tuyến thì có dòng báo thời hạn giữ hàng.</span></div>
+          <div class="x"><b>D. Ghi chú cho đơn hàng</b> (không bắt buộc)</div>
+        </div>
+        <div class="col" style="flex:5">
+          <div class="x fix">Tóm tắt Đơn hàng (dính theo khi cuộn)
+            <div class="x" style="margin-top:6px">Từng dòng hàng: ảnh nhỏ · tên · Biến thể · số lượng · thành tiền</div>
+            <div class="x" style="margin-top:6px;border-color:#8A5300;background:#FFF3D9;color:#8A5300">Cảnh báo khi Suất flash sale đã hết: "Suất flash sale đã hết, sản phẩm này tính theo giá thường" + giá cũ gạch ngang, giá mới</div>
+            <div class="x" style="margin-top:6px">Mã giảm giá: [ô nhập] [Áp dụng] + kết quả · Điểm tích luỹ (chỉ Thành viên): dùng N điểm</div>
+            <div class="x" style="margin-top:6px">Tạm tính · Giảm giá · Điểm · Phí vận chuyển · <b>Tổng tiền</b></div>
+            <div class="x cta" style="margin-top:6px">Đặt hàng</div>
+            <div class="note">Dưới nút: đồng ý điều khoản mua hàng (liên kết).</div>
+          </div>
+        </div>
+      </div>
+      <div class="x">Lỗi nhập liệu hiện ngay dưới ô sai; khi bấm "Đặt hàng" mà còn lỗi thì cuộn tới ô sai đầu tiên.</div>
+      <div class="x dk">Chân trang rút gọn: [Địa chỉ] · [Số điện thoại] · [Email] · chính sách</div>
+    </div>
+  </div>
+
+  <div class="frame m">
+    <div class="cap">Điện thoại</div>
+    <div class="wf">
+      <div class="x fix">Đầu trang rút gọn: ← (về giỏ hàng) · Logo · Các bước 1 › <b>2</b> › 3</div>
+      <div class="x">Tóm tắt Đơn hàng thu gọn: "2 sản phẩm · 9.520.000 ₫ ▾" <span class="note">(minh hoạ)</span>, bấm mở danh sách dòng hàng</div>
+      <div class="x" style="border-color:#8A5300;background:#FFF3D9;color:#8A5300">Cảnh báo hết Suất flash sale (nếu có) luôn hiện, không nằm trong phần thu gọn</div>
+      <div class="x"><b>A. Người nhận</b>: mỗi ô một dòng; bàn phím số cho số điện thoại; mời đăng nhập</div>
+      <div class="x"><b>B. Cách nhận hàng</b>: 2 thẻ chọn xếp dọc; danh sách tỉnh thành, phường xã mở toàn màn hình có ô tìm</div>
+      <div class="x"><b>C. Thanh toán</b>: thẻ chọn xếp dọc, mỗi thẻ cao tối thiểu 48px</div>
+      <div class="x">Mã giảm giá · Điểm tích luỹ</div>
+      <div class="x"><b>D. Ghi chú</b></div>
+      <div class="x">Tạm tính · Giảm giá · Phí vận chuyển · Tổng tiền</div>
+      <div class="x dk">Chân trang rút gọn</div>
+      <div class="x fix"><div class="r"><div class="x" style="flex:2">Tổng tiền<br><b>9.520.000 ₫</b></div><div class="x cta" style="flex:3">Đặt hàng</div></div><div class="note">Thanh dính đáy.</div></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

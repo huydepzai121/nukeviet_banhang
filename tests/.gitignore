@@ -1,0 +1,2 @@
+# Local database snapshot: holds the administrator password hash and site keys.
+/.baseline/

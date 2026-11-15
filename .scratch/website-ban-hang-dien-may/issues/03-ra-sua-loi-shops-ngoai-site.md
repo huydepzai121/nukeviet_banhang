@@ -4,7 +4,7 @@
 
 **Blocked by:** 02 Cài shops gốc và bài kiểm thử đầu tiên
 
-**Status:** ready-for-agent
+**Status:** skipped (chủ cửa hàng yêu cầu bỏ qua ngày 15/11/2026; lỗi của mã gốc chỉ sửa khi nó chặn một ticket khác)
 
 - [ ] Mỗi lỗi trong danh sách ngoài site có bài kiểm thử tái hiện trước khi sửa và qua sau khi sửa, hoặc ghi rõ lý do không sửa
 - [ ] Mọi trang ngoài site của shops trả về mã 200 và không sinh cảnh báo hay lỗi PHP

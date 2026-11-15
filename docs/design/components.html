@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thành phần lặp lại - Sáng Nhà (bản chờ duyệt)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Token: nguồn chuẩn là bảng trong design-brief.md. */
+:root{
+  --primary-700:#0A5754;--primary-600:#0D6E6A;--primary-300:#6FD0C8;--primary-100:#D5EDEA;--primary-50:#EAF6F4;
+  --secondary-900:#102A30;--secondary-700:#1E4650;
+  --accent-700:#9C1249;--accent-600:#C2185B;--accent-50:#FDEAF1;
+  --neutral-900:#14252A;--neutral-700:#3F5257;--neutral-500:#62757A;--neutral-400:#7C8D91;--neutral-300:#C9D3D5;--neutral-100:#EEF2F2;--neutral-50:#F6F8F8;--neutral-0:#FFFFFF;
+  --success-700:#18703A;--success-50:#E5F4EA;--warning-700:#8A5300;--warning-50:#FFF3D9;--danger-700:#B42318;--danger-50:#FDECEA;--info-700:#1D5C9E;--info-50:#E7F0FA;
+  --rating:#B86E00;
+  --radius-sm:6px;--radius-md:10px;--radius-pill:999px;
+  --shadow-card:0 1px 2px rgba(16,42,48,.08);--shadow-raised:0 6px 18px rgba(16,42,48,.14);
+  --font:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:24px;font-family:var(--font);font-size:16px;line-height:1.5;color:var(--neutral-900);background:var(--neutral-50)}
+h1{font-size:28px;line-height:1.25;margin:0 0 4px}
+h2{font-size:20px;line-height:1.3;margin:36px 0 12px;padding-top:16px;border-top:2px solid var(--neutral-300)}
+h3{font-size:14px;margin:0 0 8px;color:var(--neutral-700);font-weight:600}
+p.lead{color:var(--neutral-700);max-width:900px;margin:0 0 8px}
+.row{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.demo{background:#fff;border:1px solid var(--neutral-300);border-radius:var(--radius-md);padding:16px}
+.spec{font-size:13px;color:var(--neutral-700);max-width:900px}
+.spec li{margin:2px 0}
+a{color:var(--primary-700)}
+
+/* Logo */
+.logo-l{background:#fff;border:1px solid var(--neutral-300);padding:24px;border-radius:var(--radius-md)}
+.logo-d{background:var(--secondary-900);padding:24px;border-radius:var(--radius-md)}
+
+/* Bảng màu */
+.sw{width:132px;border:1px solid var(--neutral-300);border-radius:var(--radius-sm);overflow:hidden;background:#fff;font-size:12px}
+.sw i{display:block;height:56px}
+.sw span{display:block;padding:6px 8px;line-height:1.35}
+.sw b{display:block;font-weight:600}
+
+/* Thang chữ */
+.type div{margin:0 0 10px}
+.type small{display:block;font-size:12px;color:var(--neutral-500);font-weight:400;letter-spacing:0}
+
+/* Nhãn */
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;line-height:1;padding:5px 8px;border-radius:var(--radius-sm);white-space:nowrap}
+.badge.off{background:var(--accent-600);color:#fff}
+.badge.flash{background:var(--accent-50);color:var(--accent-700);border:1px solid var(--accent-600)}
+.badge.new{background:var(--primary-50);color:var(--primary-700);border:1px solid var(--primary-600)}
+.badge.in{background:var(--success-50);color:var(--success-700)}
+.badge.low{background:var(--warning-50);color:var(--warning-700)}
+.badge.out{background:var(--neutral-100);color:var(--neutral-700)}
+.badge.store{background:var(--info-50);color:var(--info-700)}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+svg.bolt{width:12px;height:12px;fill:currentColor;flex:none}
+
+/* Thẻ sản phẩm */
+.card{width:212px;background:#fff;border:1px solid var(--neutral-300);border-radius:var(--radius-md);box-shadow:var(--shadow-card);padding:12px;display:flex;flex-direction:column;gap:8px;position:relative;transition:box-shadow .15s,border-color .15s}
+.card:hover{box-shadow:var(--shadow-raised);border-color:var(--primary-600)}
+.card .ph{aspect-ratio:1/1;background:var(--neutral-100);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--neutral-700);font-size:12px}
+.card .tags{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.card .fav{position:absolute;top:8px;right:8px;width:44px;height:44px;border:0;background:transparent;font-size:20px;color:var(--neutral-700);cursor:pointer;border-radius:50%}
+.card .name{font-size:14px;font-weight:500;line-height:1.4;color:var(--neutral-900);text-decoration:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:39px}
+.card .price{font-size:18px;font-weight:700;line-height:1.3;color:var(--neutral-900);font-variant-numeric:tabular-nums}
+.card .price.sale{color:var(--accent-600)}
+.card .old{font-size:13px;color:var(--neutral-500);font-variant-numeric:tabular-nums}
+.card .old s{margin-right:6px}
+.card .old b{color:var(--accent-700);font-weight:600}
+.rate{font-size:13px;color:var(--neutral-700);display:flex;align-items:center;gap:4px}
+.rate .star{color:var(--rating);font-size:14px}
+.slots{font-size:12px;color:var(--accent-700);font-weight:600}
+.slots .bar{height:6px;background:var(--accent-50);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:4px;border:1px solid var(--accent-600)}
+.slots .bar i{display:block;height:100%;background:var(--accent-600)}
+.card .foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.card label.cmp{font-size:13px;color:var(--neutral-700);display:inline-flex;align-items:center;gap:6px;min-height:44px;cursor:pointer}
+.card.sold .ph{opacity:.6}
+.card.sold .name,.card.sold .price{color:var(--neutral-700)}
+
+/* Nút */
+.btn{font:inherit;font-weight:600;font-size:15px;line-height:1;min-height:44px;padding:0 20px;border-radius:var(--radius-sm);border:1.5px solid transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;flex:none;transition:background .15s,border-color .15s}
+.btn.lg{min-height:52px;font-size:16px;padding:0 28px}
+.btn.sm{min-height:36px;font-size:13px;padding:0 12px}
+.btn.primary{background:var(--primary-600);color:#fff}
+.btn.primary:hover,.btn.primary.hover{background:var(--primary-700)}
+.btn.outline{background:#fff;color:var(--primary-700);border-color:var(--primary-600)}
+.btn.outline:hover{background:var(--primary-50)}
+.btn.promo{background:var(--accent-600);color:#fff}
+.btn.promo:hover{background:var(--accent-700)}
+.btn.ghost{background:transparent;color:var(--primary-700)}
+.btn.ghost:hover{background:var(--primary-50)}
+.btn.danger{background:#fff;color:var(--danger-700);border-color:var(--danger-700)}
+.btn:disabled{background:var(--neutral-100);color:var(--neutral-700);border-color:var(--neutral-300);cursor:not-allowed}
+.btn:focus-visible,.field input:focus-visible,.field select:focus-visible,.chip:focus-visible,.card a:focus-visible{outline:3px solid var(--primary-300);outline-offset:2px}
+.btn.focus{outline:3px solid var(--primary-300);outline-offset:2px}
+
+/* Ô nhập */
+.field{display:flex;flex-direction:column;gap:6px;width:260px}
+.field label{font-size:14px;font-weight:600}
+.field label em{color:var(--danger-700);font-style:normal}
+.field input,.field select{font:inherit;font-size:16px;min-height:44px;padding:0 12px;border:1.5px solid var(--neutral-400);border-radius:var(--radius-sm);background:#fff;color:var(--neutral-900);width:100%}
+.field input::placeholder{color:var(--neutral-500)}
+.field input.focus{border-color:var(--primary-600);outline:3px solid var(--primary-300);outline-offset:1px}
+.field.err input{border-color:var(--danger-700)}
+.field .msg{font-size:13px;color:var(--neutral-700)}
+.field.err .msg{color:var(--danger-700)}
+.field.ok .msg{color:var(--success-700)}
+.field input:disabled{background:var(--neutral-100);color:var(--neutral-700);border-color:var(--neutral-300)}
+.join{display:flex}
+.join input{border-radius:var(--radius-sm) 0 0 var(--radius-sm);border-right:0}
+.join .btn{border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+.stepper{display:inline-flex;border:1.5px solid var(--neutral-400);border-radius:var(--radius-sm);overflow:hidden;background:#fff}
+.stepper button{width:44px;height:44px;border:0;background:#fff;font:inherit;font-size:20px;color:var(--neutral-900);cursor:pointer}
+.stepper button:disabled{color:var(--neutral-400);background:var(--neutral-100);cursor:not-allowed}
+.stepper output{width:48px;display:flex;align-items:center;justify-content:center;font-weight:600;border-left:1px solid var(--neutral-300);border-right:1px solid var(--neutral-300)}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--neutral-400);border-radius:var(--radius-sm);padding:12px;width:260px;min-height:48px;background:#fff;cursor:pointer}
+.opt.on{border-color:var(--primary-600);background:var(--primary-50);box-shadow:inset 0 0 0 1px var(--primary-600)}
+.opt input{width:20px;height:20px;accent-color:var(--primary-600);margin:2px 0 0}
+.opt small{display:block;color:var(--neutral-700);font-size:13px}
+
+/* Viên chọn biến thể */
+.chip{font:inherit;font-size:14px;min-height:44px;padding:4px 14px;border:1.5px solid var(--neutral-400);border-radius:var(--radius-sm);background:#fff;color:var(--neutral-900);cursor:pointer;text-align:left;line-height:1.3}
+.chip small{display:block;font-size:12px;color:var(--neutral-700)}
+.chip.on{border-color:var(--primary-600);background:var(--primary-50);box-shadow:inset 0 0 0 1px var(--primary-600);font-weight:600}
+.chip:disabled{border-style:dashed;border-color:var(--neutral-400);background:var(--neutral-100);color:var(--neutral-700);text-decoration:line-through;cursor:not-allowed}
+
+/* Flash sale */
+.fsbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:var(--accent-600);color:#fff;border-radius:var(--radius-md);padding:10px 16px;font-weight:600}
+.fsbar .cd{display:flex;gap:4px;align-items:center;font-variant-numeric:tabular-nums}
+.fsbar .cd b{background:#fff;color:var(--accent-700);border-radius:4px;padding:4px 6px;min-width:32px;text-align:center}
+
+/* Thông báo */
+.alert{border-radius:var(--radius-sm);padding:10px 12px;font-size:14px;border:1px solid;max-width:420px}
+.alert.s{background:var(--success-50);color:var(--success-700);border-color:var(--success-700)}
+.alert.w{background:var(--warning-50);color:var(--warning-700);border-color:var(--warning-700)}
+.alert.d{background:var(--danger-50);color:var(--danger-700);border-color:var(--danger-700)}
+.alert.i{background:var(--info-50);color:var(--info-700);border-color:var(--info-700)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<h1>Thành phần lặp lại - Sáng Nhà</h1>
+<p class="lead">Mẫu trực quan của logo, bảng màu, thang chữ và các thành phần dùng lại trên mọi trang. Tên sản phẩm là tên chung, giá là giá minh hoạ. Tài liệu chờ chủ cửa hàng duyệt; xem <a href="design-brief.md">design-brief.md</a> và <a href="wireframes.html">wireframes.html</a>.</p>
+
+<h2>1. Logo</h2>
+<div class="row">
+  <div class="logo-l"><img src="logo-sang-nha-nen-sang.svg" alt="Logo Sáng Nhà cho nền sáng" height="64"></div>
+  <div class="logo-d"><img src="logo-sang-nha-nen-toi.svg" alt="Logo Sáng Nhà cho nền tối" height="64"></div>
+  <div class="logo-l"><img src="logo-sang-nha-bieu-tuong.svg" alt="Biểu tượng Sáng Nhà" height="64"></div>
+  <div class="logo-l"><img src="logo-sang-nha-nen-sang.svg" alt="Logo Sáng Nhà cỡ nhỏ nhất" height="28"></div>
+</div>
+
+<h2>2. Bảng màu (phương án A, đề xuất chính)</h2>
+<h3>Chính (xanh cổ vịt)</h3>
+<div class="row">
+  <div class="sw"><i style="background:#0A5754"></i><span><b>primary-700</b>#0A5754<br>rê chuột, chữ liên kết</span></div>
+  <div class="sw"><i style="background:#0D6E6A"></i><span><b>primary-600</b>#0D6E6A<br>nút chính, logo</span></div>
+  <div class="sw"><i style="background:#6FD0C8"></i><span><b>primary-300</b>#6FD0C8<br>trên nền tối, viền tiêu điểm</span></div>
+  <div class="sw"><i style="background:#D5EDEA"></i><span><b>primary-100</b>#D5EDEA</span></div>
+  <div class="sw"><i style="background:#EAF6F4"></i><span><b>primary-50</b>#EAF6F4<br>nền đang chọn</span></div>
+</div>
+<h3 style="margin-top:16px">Phụ (xanh mực) và nhấn khuyến mãi (hồng sen)</h3>
+<div class="row">
+  <div class="sw"><i style="background:#102A30"></i><span><b>secondary-900</b>#102A30<br>thanh tiện ích, chân trang</span></div>
+  <div class="sw"><i style="background:#1E4650"></i><span><b>secondary-700</b>#1E4650</span></div>
+  <div class="sw"><i style="background:#9C1249"></i><span><b>accent-700</b>#9C1249</span></div>
+  <div class="sw"><i style="background:#C2185B"></i><span><b>accent-600</b>#C2185B<br>mức giảm, flash sale, giá đang giảm</span></div>
+  <div class="sw"><i style="background:#FDEAF1"></i><span><b>accent-50</b>#FDEAF1</span></div>
+</div>
+<h3 style="margin-top:16px">Trung tính</h3>
+<div class="row">
+  <div class="sw"><i style="background:#14252A"></i><span><b>neutral-900</b>#14252A<br>chữ chính</span></div>
+  <div class="sw"><i style="background:#3F5257"></i><span><b>neutral-700</b>#3F5257<br>chữ phụ</span></div>
+  <div class="sw"><i style="background:#62757A"></i><span><b>neutral-500</b>#62757A<br>chữ mờ, giá gốc</span></div>
+  <div class="sw"><i style="background:#7C8D91"></i><span><b>neutral-400</b>#7C8D91<br>viền ô nhập</span></div>
+  <div class="sw"><i style="background:#C9D3D5"></i><span><b>neutral-300</b>#C9D3D5<br>đường kẻ, viền thẻ</span></div>
+  <div class="sw"><i style="background:#EEF2F2"></i><span><b>neutral-100</b>#EEF2F2</span></div>
+  <div class="sw"><i style="background:#F6F8F8"></i><span><b>neutral-50</b>#F6F8F8<br>nền trang</span></div>
+</div>
+<h3 style="margin-top:16px">Trạng thái</h3>
+<div class="row">
+  <div class="alert s">Thành công: đã áp dụng mã giảm giá.</div>
+  <div class="alert w">Cảnh báo: Suất flash sale đã hết, sản phẩm tính theo giá thường.</div>
+  <div class="alert d">Lỗi: số lượng vượt quá tồn kho.</div>
+  <div class="alert i">Thông tin: đơn được giữ hàng trong 30 phút.</div>
+</div>
+
+<h2>3. Thang chữ (Be Vietnam Pro)</h2>
+<div class="demo type">
+  <div style="font-size:32px;font-weight:700;line-height:1.25"><small>display · 32/40 · 700 (điện thoại 26/34)</small>Điện máy cho mọi nhà Việt</div>
+  <div style="font-size:24px;font-weight:700;line-height:1.3"><small>h1 · 24/32 · 700 (điện thoại 20/28)</small>Điện thoại mẫu 256GB</div>
+  <div style="font-size:20px;font-weight:600;line-height:1.4"><small>h2 · 20/28 · 600 (điện thoại 18/26)</small>Sản phẩm thường được mua cùng</div>
+  <div style="font-size:16px;font-weight:600;line-height:1.5"><small>h3 · 16/24 · 600</small>Thông số kỹ thuật</div>
+  <div style="font-size:16px;line-height:1.5"><small>body · 16/24 · 400</small>Màn hình rộng, pin dùng trọn ngày, đủ dấu: ă â đ ê ô ơ ư, ẵ ẫ ễ ỗ ỡ ữ, Ằ Ẩ Ệ Ộ Ợ Ự.</div>
+  <div style="font-size:14px;line-height:1.5"><small>body-sm · 14/21 · 400</small>Tên sản phẩm trên thẻ, nhãn ô nhập, dòng bảng thông số.</div>
+  <div style="font-size:12px;line-height:1.5;font-weight:600"><small>caption · 12/18 · 400 hoặc 600</small>Nhãn, chú thích, số đánh giá</div>
+  <div style="font-size:24px;font-weight:700;line-height:1.3;font-variant-numeric:tabular-nums;color:#C2185B"><small>price-lg · 24/32 · 700 · số đều cột</small>8.990.000 ₫</div>
+</div>
+
+<h2>4. Thẻ sản phẩm</h2>
+<div class="row">
+  <div>
+    <h3>Giá thường</h3>
+    <article class="card">
+      <button class="fav" aria-label="Thêm vào yêu thích">♡</button>
+      <div class="ph">Ảnh 1:1</div>
+      <a class="name" href="#">Tủ lạnh mẫu 300 lít hai cánh</a>
+      <div class="price">9.490.000 ₫</div>
+      <div class="old">&nbsp;</div>
+      <div class="rate"><span class="star" aria-hidden="true">★</span> 4,5 <span>(36)</span></div>
+      <div class="foot"><span class="badge in"><span class="dot"></span>Còn hàng</span><label class="cmp"><input type="checkbox"> So sánh</label></div>
+    </article>
+  </div>
+  <div>
+    <h3>Đang giảm giá</h3>
+    <article class="card">
+      <div class="tags"><span class="badge off">−18%</span></div>
+      <button class="fav" aria-label="Thêm vào yêu thích">♡</button>
+      <div class="ph">Ảnh 1:1</div>
+      <a class="name" href="#">Điện thoại mẫu 256GB</a>
+      <div class="price sale">8.990.000 ₫</div>
+      <div class="old"><s>10.990.000 ₫</s><b>−18%</b></div>
+      <div class="rate"><span class="star" aria-hidden="true">★</span> 4,6 <span>(128)</span></div>
+      <div class="foot"><span class="badge in"><span class="dot"></span>Còn hàng</span><label class="cmp"><input type="checkbox"> So sánh</label></div>
+    </article>
+  </div>
+  <div>
+    <h3>Trong Đợt flash sale</h3>
+    <article class="card">
+      <div class="tags"><span class="badge flash"><svg class="bolt" viewBox="0 0 12 12" aria-hidden="true"><path d="M7 0 1.5 7H5l-1 5 5.5-7H6z"/></svg>Flash sale</span><span class="badge off">−30%</span></div>
+      <button class="fav" aria-label="Thêm vào yêu thích">♡</button>
+      <div class="ph">Ảnh 1:1</div>
+      <a class="name" href="#">Tivi mẫu 55 inch 4K</a>
+      <div class="price sale">9.790.000 ₫</div>
+      <div class="old"><s>13.990.000 ₫</s><b>−30%</b></div>
+      <div class="slots"><div class="bar"><i style="width:76%"></i></div>Còn 12/50 Suất</div>
+      <div class="rate"><span class="star" aria-hidden="true">★</span> 4,8 <span>(57)</span></div>
+    </article>
+  </div>
+  <div>
+    <h3>Hết hàng, chưa có đánh giá</h3>
+    <article class="card sold">
+      <button class="fav" aria-label="Thêm vào yêu thích">♡</button>
+      <div class="ph">Ảnh 1:1</div>
+      <a class="name" href="#">Máy giặt mẫu 9 kg cửa ngang</a>
+      <div class="price">7.290.000 ₫</div>
+      <div class="old">&nbsp;</div>
+      <div class="rate">Chưa có đánh giá</div>
+      <div class="foot"><span class="badge out">Hết hàng</span></div>
+    </article>
+  </div>
+</div>
+<ul class="spec">
+  <li>Thứ tự cố định từ trên xuống: ảnh, tên (tối đa 2 dòng), giá bán, giá gốc + mức giảm, (thanh Suất nếu flash sale), điểm đánh giá, nhãn tồn kho.</li>
+  <li>Sản phẩm có nhiều Biến thể: giá bán hiện giá Biến thể thấp nhất, có chữ "Từ" đứng trước.</li>
+  <li>Giá đang giảm dùng màu nhấn; giá thường dùng màu chữ chính. Màu không phải tín hiệu duy nhất: luôn kèm giá gốc gạch ngang và mức giảm bằng số.</li>
+  <li>Toàn thẻ bấm được (tới trang chi tiết); nút yêu thích và ô "So sánh" là vùng bấm riêng, tối thiểu 44 x 44px.</li>
+  <li>Giá trong mẫu là giá minh hoạ.</li>
+</ul>
+
+<h2>5. Nút</h2>
+<div class="demo row" style="align-items:center">
+  <button class="btn primary lg">Mua ngay</button>
+  <button class="btn primary">Thêm vào giỏ</button>
+  <button class="btn primary hover">Rê chuột</button>
+  <button class="btn primary focus">Tiêu điểm</button>
+  <button class="btn outline">Thêm vào giỏ</button>
+  <button class="btn promo">Xem flash sale</button>
+  <button class="btn ghost">Xem tất cả</button>
+  <button class="btn danger sm">Xoá</button>
+  <button class="btn primary" disabled>Hết hàng</button>
+  <button class="btn primary sm">Áp dụng</button>
+</div>
+<ul class="spec">
+  <li>Mỗi màn hình chỉ một nút chính (nền primary-600). Nút viền cho hành động phụ. Nút màu nhấn chỉ dùng cho lời mời vào khuyến mãi, không dùng cho "Mua ngay".</li>
+  <li>Cao 44px (chuẩn), 52px (lớn, cho mua và đặt hàng), 36px (nhỏ, chỉ trên máy tính hoặc trong bảng).</li>
+  <li>Trạng thái: thường, rê chuột (đậm một bậc), tiêu điểm (viền primary-300 dày 3px), đang xử lý (vòng xoay + khoá bấm), vô hiệu.</li>
+</ul>
+
+<h2>6. Ô nhập</h2>
+<div class="demo row">
+  <div class="field"><label for="f1">Họ tên <em>*</em></label><input id="f1" placeholder="Ví dụ: Nguyễn Văn A"><span class="msg">Tên người nhận hàng.</span></div>
+  <div class="field"><label for="f2">Số điện thoại <em>*</em></label><input id="f2" class="focus" inputmode="tel" value="09"><span class="msg">Đang nhập (tiêu điểm).</span></div>
+  <div class="field err"><label for="f3">Số điện thoại <em>*</em></label><input id="f3" value="0912" aria-invalid="true" aria-describedby="m3"><span class="msg" id="m3">Số điện thoại chưa đủ 10 chữ số.</span></div>
+  <div class="field"><label for="f4">Tỉnh thành <em>*</em></label><select id="f4"><option>Chọn tỉnh thành</option></select></div>
+  <div class="field"><label for="f5">Email</label><input id="f5" disabled value="Không sửa được"></div>
+  <div class="field ok"><label for="f6">Mã giảm giá</label><div class="join"><input id="f6" value="MAMAU"><button class="btn primary">Áp dụng</button></div><span class="msg">Đã giảm 200.000 ₫ (số minh hoạ).</span></div>
+  <div><h3>Số lượng</h3><div class="stepper"><button aria-label="Giảm" disabled>−</button><output>1</output><button aria-label="Tăng">+</button></div></div>
+  <label class="opt on"><input type="radio" name="o" checked><span><b>Giao tận nơi</b><small>Phí hiện sau khi chọn tỉnh thành</small></span></label>
+  <label class="opt"><input type="radio" name="o"><span><b>Nhận tại Cửa hàng</b><small>Phí 0 ₫</small></span></label>
+</div>
+<ul class="spec">
+  <li>Nhãn luôn nằm trên ô, không dùng chữ gợi ý thay nhãn. Cỡ chữ trong ô 16px để điện thoại không tự phóng to.</li>
+  <li>Viền neutral-400 (tương phản 3,46:1 với nền trắng). Lỗi hiện ngay dưới ô, kèm chữ, không chỉ đổi màu viền.</li>
+</ul>
+
+<h2>7. Chọn Biến thể</h2>
+<div class="demo row">
+  <button class="chip">128GB<small>7.990.000 ₫</small></button>
+  <button class="chip on" aria-pressed="true">256GB<small>8.990.000 ₫</small></button>
+  <button class="chip">512GB<small>10.990.000 ₫</small></button>
+  <button class="chip on" aria-pressed="true">Đen</button>
+  <button class="chip">Xanh lam</button>
+  <button class="chip" disabled>Trắng (hết hàng)</button>
+</div>
+
+<h2>8. Nhãn trạng thái tồn kho và nhãn khuyến mãi</h2>
+<div class="demo row" style="align-items:center">
+  <span class="badge in"><span class="dot"></span>Còn hàng</span>
+  <span class="badge low"><span class="dot"></span>Sắp hết hàng</span>
+  <span class="badge out">Hết hàng</span>
+  <span class="badge store">Còn hàng tại 3 Cửa hàng</span>
+  <span class="badge off">−18%</span>
+  <span class="badge flash"><svg class="bolt" viewBox="0 0 12 12" aria-hidden="true"><path d="M7 0 1.5 7H5l-1 5 5.5-7H6z"/></svg>Flash sale</span>
+  <span class="badge new">Mới</span>
+</div>
+
+<h2>9. Dải flash sale có đếm ngược</h2>
+<div class="fsbar"><svg class="bolt" style="width:18px;height:18px" viewBox="0 0 12 12" aria-hidden="true"><path d="M7 0 1.5 7H5l-1 5 5.5-7H6z"/></svg>Flash sale · Kết thúc sau <span class="cd" role="timer" aria-label="Còn 2 giờ 15 phút 40 giây"><b>02</b>:<b>15</b>:<b>40</b></span></div>
+
+</body>
+</html>

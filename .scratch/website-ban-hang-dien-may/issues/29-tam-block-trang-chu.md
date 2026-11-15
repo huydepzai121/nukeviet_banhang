@@ -12,3 +12,5 @@
 - [ ] Block flash sale ẩn khi không có đợt nào đang chạy
 - [ ] Block không có dữ liệu thì không để lại khung trống
 - [ ] Cả tám block có trong gói module xuất ra và chạy trên site sạch
+- [ ] Block banner khuyến mãi đặt được nhiều lần trên một trang, mỗi lần chọn nhóm ảnh và tỉ lệ ảnh riêng cho máy tính và điện thoại
+- [ ] Block menu ngành hàng có hai kiểu hiện chọn được trong cấu hình: mở sẵn và xổ ra từ nút
