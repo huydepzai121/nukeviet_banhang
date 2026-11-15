@@ -75,6 +75,7 @@ function nv_template_view_home($array_data, $compare_id, $pages = '', $sort = 0,
     $xtpl->assign('MODULE_NAME', $module_name);
     $xtpl->assign('LANG', $lang_module);
     $xtpl->assign('TEMPLATE', $module_info['template']);
+    $xtpl->assign('STOREFRONT', function_exists('nv_shops_storefront_html') ? nv_shops_storefront_html() : '');
 
     if ($pro_config['home_data'] == 'all') {
         if (function_exists('nv_template_' . $viewtype)) {
@@ -198,6 +199,8 @@ function nv_template_detail($data_content, $data_unit, $data_others, $array_othe
     $link2 = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=';
 
     $xtpl = new XTemplate('detail.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file);
+    $xtpl->assign('DETAIL_EXTRA', '');
+    $xtpl->assign('DETAIL_LOWER', '');
     $xtpl->assign('GLANG', $lang_module);
     $xtpl->assign('LANG', $lang_module);
     $xtpl->assign('MODULE', $module_name);
@@ -215,6 +218,12 @@ function nv_template_detail($data_content, $data_unit, $data_others, $array_othe
         $xtpl->assign('CAT_TITLE', $global_array_shops_cat[$data_content['listcatid']]['title']);
         $xtpl->assign('SRC_PRO_FULL', $global_config['site_url'] . $data_content['homeimgthumb']);
         $xtpl->assign('TITLE', $data_content[NV_LANG_DATA . '_title']);
+        if (function_exists('nv_shops_detail_extra')) {
+            $sell = !empty($data_content['saleprice']) ? (float) $data_content['saleprice'] : (float) $data_content['product_price'];
+            $months = (int) ($data_content['warranty_months'] ?? 12);
+            $xtpl->assign('DETAIL_EXTRA', nv_shops_detail_extra((int) $data_content['id'], (float) $data_content['product_price'], $sell, $months, 'buy'));
+            $xtpl->assign('DETAIL_LOWER', nv_shops_detail_extra((int) $data_content['id'], (float) $data_content['product_price'], $sell, $months, 'lower'));
+        }
 
         if (!empty($data_content['product_weight'])) {
             $xtpl->assign('PRODUCT_WEIGHT', $data_content['product_weight']);

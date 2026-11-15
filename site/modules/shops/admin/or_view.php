@@ -85,7 +85,7 @@ foreach ($listid as $dbkey => $proid) {
     ' . $db_config['prefix'] . '_' . $module_data . '_orders_id AS t3
     WHERE t1.product_unit = t2.id AND t1.id = t3.proid AND t1.id=' . $proid . '
     AND listgroupid=' . $db->quote($slistgroup[$dbkey]) . ' AND t3.order_id=' . $order_id.'
-    AND t1.status =1 AND t1.publtime < ' . NV_CURRENTTIME . '
+    AND t1.status =1 AND t1.publtime <= ' . NV_CURRENTTIME . '
     AND (t1.exptime=0 OR t1.exptime>' . NV_CURRENTTIME . ')';
     $result = $db->query($sql);
 

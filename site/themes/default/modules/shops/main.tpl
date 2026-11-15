@@ -1,4 +1,5 @@
 <!-- BEGIN: main -->
+{STOREFRONT}
 <!-- BEGIN: viewall -->
 <div class="shops-main-page shops-main-page-all shops-main-page-{MODULE_NAME}">
     {CONTENT}

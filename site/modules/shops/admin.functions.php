@@ -72,7 +72,12 @@ $allow_func = array(
     'warehouse',
     'warehouse_logs',
     'download',
-    'updateprice'
+    'updateprice',
+    'report',
+    'csv',
+    'brand',
+    'flash',
+    'stores'
 );
 
 if (defined('NV_IS_SPADMIN')) {

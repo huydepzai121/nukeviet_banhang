@@ -12,6 +12,8 @@ if (!defined('NV_MAINFILE')) {
     die('Stop!!!');
 }
 
+require_once NV_ROOTDIR . '/modules/shops/Storefront/Feature.php';
+
 // Ket noi file ngon ngu tuy chinh du lieu
 if (file_exists(NV_ROOTDIR . '/modules/' . $module_file . '/language/custom_' . NV_LANG_INTERFACE . '.php')) {
     $lang_temp = $lang_module;

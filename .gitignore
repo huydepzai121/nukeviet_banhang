@@ -1,3 +1,5 @@
+node_modules/
+
 # Bí mật và dữ liệu cục bộ
 .env
 /backups/*.sql
